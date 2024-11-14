@@ -19,9 +19,29 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'lastname',
+        'codigo',
         'email',
         'password',
+        'rol',
+        'cargo',
+        'turno',
     ];
+
+    public function supervisados()
+    {
+        return $this->hasMany(HigienePersonal::class, 'supervisor_id');
+    }
+
+    // Relación para los registros de HigienePersonal donde el usuario es trabajador
+    public function trabajos()
+    {
+        return $this->hasMany(HigienePersonal::class, 'trabajador_id');
+    }
+    public function lavadoManos()
+    {
+        return $this->hasMany(LavadoMano::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.
