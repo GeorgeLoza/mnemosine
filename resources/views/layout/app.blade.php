@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="manifest" href="/manifest.json">
 
     <script src="{{ asset('js/flowbite.js') }}"></script>
-    <link rel="stylesheet" href="{{ asset('build/assets/app-BLKEC-WE.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/assets/app-Crdr9P4F.css') }}">
     <script src="{{ asset('build/assets/app-BJi2HfH9.js') }}" defer></script>
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
@@ -100,7 +101,7 @@
                                     de manos</a>
                             </li>
                             <li>
-                                <a href=""
+                                <a href="{{route('externoPersonal.index')}}"
                                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Personal
                                     Externo</a>
                             </li>

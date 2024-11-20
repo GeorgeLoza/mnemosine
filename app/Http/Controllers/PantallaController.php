@@ -19,5 +19,11 @@ class PantallaController extends Controller
     public function LavadoMano(){
         return view('pantallas.lavadoMano');
     }
+    public function externoPersonal(){
+        return view('pantallas.externo');
+    }
+    public function ordLimDes(){
+        return view('pantallas.ordLimDes');
+    }
 
 }

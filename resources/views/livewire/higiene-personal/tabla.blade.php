@@ -27,7 +27,7 @@
                         salud
                     </th>
                     <th scope="col" class="px-2 py-1">
-                        objetos extraños
+                        Sin objetos extraños
                     </th>
                     <th scope="col" class="px-2 py-1">
                         observaciones
@@ -48,7 +48,7 @@
                             class="px-2 py-1.5 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {{ $loop->iteration }}
                         </th>
-                        <td class="px-2 py-1.5">
+                        <td class="px-2 py-1.5 whitespace-nowrap">
                             {{ $higiene->tiempo }}
                         </td>
                         <td class="px-2 py-1.5">

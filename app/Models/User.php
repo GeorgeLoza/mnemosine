@@ -42,6 +42,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(LavadoMano::class);
     }
+    public function externo()
+    {
+        return $this->hasMany(PersonalExterno::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

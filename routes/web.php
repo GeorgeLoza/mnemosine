@@ -19,6 +19,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/usuario', [PantallaController::class, 'usuario'])->name('usuario.index');
     Route::get('/higienePersonal', [PantallaController::class, 'higienePersonal'])->name('higienePersonal.index');
     Route::get('/lavadoMano', [PantallaController::class, 'LavadoMano'])->name('lavadoMano.index');
+    Route::get('/documentacion', [PantallaController::class, 'documentacion'])->name('documentacion.index');
+    Route::get('/externoPersonal', [PantallaController::class, 'externoPersonal'])->name('externoPersonal.index');
+    Route::get('/ordLimDes', [PantallaController::class, 'ordLimDes'])->name('ordLimDes.index');
 
     Route::get('/higiene', [MobileController::class, 'higienePersonal'])->name('mobile.higienePersonal');
     Route::get('/lavado', [MobileController::class, 'lavadoMano'])->name('mobile.lavadoMano');
