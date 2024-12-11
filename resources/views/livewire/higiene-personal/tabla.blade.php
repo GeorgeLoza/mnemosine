@@ -83,6 +83,8 @@
                 @endforeach
             </tbody>
         </table>
+        <!-- Paginación -->
+        {{ $higienes->links() }}
     </div>
     <div wire:loading>
         <div

@@ -42,6 +42,8 @@
                 @endforeach
             </tbody>
         </table>
+        <!-- Paginación -->
+        {{ $lavados->links() }}
     </div>
     <div wire:loading>
         <div

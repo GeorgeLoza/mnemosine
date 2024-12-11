@@ -8,7 +8,7 @@
     <link rel="manifest" href="/manifest.json">
 
     <script src="{{ asset('js/flowbite.js') }}"></script>
-    <link rel="stylesheet" href="{{ asset('build/assets/app-Crdr9P4F.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/assets/app-BUyHLSEz.css') }}">
     <script src="{{ asset('build/assets/app-BJi2HfH9.js') }}" defer></script>
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
@@ -22,8 +22,7 @@
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="" class="flex items-center space-x-3 rtl:space-x-reverse">
 
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 dark:fill-white"
-                    viewBox="0 0 512 512">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 dark:fill-white" viewBox="0 0 512 512">
                     <path
                         d="M256 32C192 32 0 64 0 192c0 35.3 28.7 64 64 64V432c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V256c35.3 0 64-28.7 64-64C512 64 320 32 256 32z" />
                 </svg>
@@ -47,34 +46,11 @@
                             class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-gray-200 md:border-0 md:hover:text-gray-700 md:p-1 dark:text-white md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-gray-800">Dashboard</a>
                     </li>
 
-                    <!-- documentacion -->
-                    <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar-documentacion"
-                        class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-gray-200 md:border-0 md:hover:text-gray-700 md:p-1 md:w-auto dark:text-white md:dark:hover:text-white dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-gray-800">Documentación
-                        <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 10 6">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 1 4 4 4-4" />
-                        </svg>
-                    </button>
-                    <!-- Dropdown menu -->
-                    <div id="dropdownNavbar-documentacion"
-                        class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
-                            <li>
-                                <a href=""
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Instructivos</a>
-                            </li>
-                            <li>
-                                <a href=""
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Procedimientos</a>
-                            </li>
-                            <li>
-                                <a href=""
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Registros</a>
-                            </li>
-                        </ul>
+                    <!-- orp -->
+                    <a href="{{ route('orp.index') }}"
+                        class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-gray-200 md:border-0 md:hover:text-gray-700 md:p-1 md:w-auto dark:text-white md:dark:hover:text-white dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-gray-800 cursor-pointer">ORP
+                    </a>
 
-                    </div>
 
                     <!-- higienePersonal -->
                     <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar-higienePersonal"
@@ -86,22 +62,23 @@
                                 d="m1 1 4 4 4-4" />
                         </svg>
                     </button>
+
                     <!-- Dropdown menu -->
                     <div id="dropdownNavbar-higienePersonal"
                         class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
                         <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
                             <li>
-                                <a href="{{route('higienePersonal.index')}}"
+                                <a href="{{ route('higienePersonal.index') }}"
                                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Higiene
                                     del Personal</a>
                             </li>
                             <li>
-                                <a href="{{route('lavadoMano.index')}}"
+                                <a href="{{ route('lavadoMano.index') }}"
                                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Lavado
                                     de manos</a>
                             </li>
                             <li>
-                                <a href="{{route('externoPersonal.index')}}"
+                                <a href="{{ route('externoPersonal.index') }}"
                                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Personal
                                     Externo</a>
                             </li>
@@ -114,6 +91,11 @@
 
                     </div>
 
+                    <a href="{{ route('verOrdLimDes.index') }}"
+                        class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-gray-200 md:border-0 md:hover:text-gray-700 md:p-1 md:w-auto dark:text-white md:dark:hover:text-white dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-gray-800 cursor-pointer">Limpieza
+                        y desinfeccion
+
+                    </a>
 
                     <!-- configuracion -->
                     <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar-configuracion"
@@ -133,9 +115,9 @@
                                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Areas</a>
                             </li>
                             <li>
-                                <a href=""
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Ambientes
-                                    y superficies</a>
+                                <a href="{{ route('ordLimDes.index') }}"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Configuracion
+                                    de OL-D</a>
                             </li>
                             <li>
                                 <a href="{{ route('usuario.index') }}"

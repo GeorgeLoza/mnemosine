@@ -63,6 +63,8 @@
                 @endforeach
             </tbody>
         </table>
+        <!-- Paginación -->
+        {{ $usuarios->links() }}
     </div>
     <div wire:loading>
         <div

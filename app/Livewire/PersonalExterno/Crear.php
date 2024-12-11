@@ -8,7 +8,7 @@ use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 use Masmerise\Toaster\Toaster;
 
-class Crear extends ModalComponent
+class Crear extends Component
 {
      /*inputs */
      public $visita;
@@ -29,6 +29,8 @@ class Crear extends ModalComponent
          'observaciones' => 'nullable|required_if:extra,true',
          'correccion' => 'nullable|required_if:extra,true',
      ];
+
+
      public function updated($propertyName)
     {
         // Verifica si alguno de los checkboxes es falso y activa $extra si es así

@@ -46,7 +46,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(PersonalExterno::class);
     }
-
+    public function verOrdLimDes()
+    {
+        return $this->hasMany(VerificacionOrdLipDes::class);
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

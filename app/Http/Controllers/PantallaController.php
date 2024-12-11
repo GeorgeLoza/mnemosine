@@ -25,5 +25,13 @@ class PantallaController extends Controller
     public function ordLimDes(){
         return view('pantallas.ordLimDes');
     }
-
+    public function verOrdLimDes(){
+        return view('pantallas.verOrdLimDes');
+    }
+    public function orp(){
+        return view('pantallas.orp');
+    }
+    public function reportOrp($id){
+        return view('pantallas.reporteOrp',['id'=> $id]);
+    }
 }

@@ -1,10 +1,11 @@
 <div>
     <div
-        class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+        class="w-full  p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
         <form class="space-y-4" wire:submit.prevent="submit">
             <h5 class="text-xl font-medium text-gray-900 dark:text-white">BPH´S</h5>
             <div>
-                <label for="visita" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Visita</label>
+                <label for="visita"
+                    class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Visita</label>
                 <input type="text" wire:model="visita" name="visita" id="visita"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                     placeholder="Nombre de la visita" />
@@ -13,8 +14,8 @@
                 @enderror
             </div>
             <div>
-                <label for="areaInstitucion"
-                    class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Visita</label>
+                <label for="areaInstitucion" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Área o
+                    intitución</label>
                 <input type="text" wire:model="areaInstitucion" name="areaInstitucion" id="visita"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                     placeholder="De donde viene la visita" />
@@ -24,7 +25,7 @@
             </div>
             <div>
                 <label for="motivo"
-                    class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Visita</label>
+                    class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Motivo</label>
                 <input type="text" wire:model="motivo" name="motivo" id="visita"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                     placeholder="Motivo de la visita" />
@@ -116,10 +117,11 @@
         </form>
     </div>
 
+
     {{-- porpovers --}}
     {{-- uniforme --}}
     <div data-popover id="popover-uniforme" role="tooltip"
-        class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-72 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400">
+        class="absolute z-30 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-72 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400">
         <div class="p-3 space-y-2">
             <h3 class="font-semibold text-gray-900 dark:text-white">Ropa de trabajo</h3>
             <p>La visita de tener su uniforme de trabajo, o en caso contrario vestir con guardapolvo, gabacha, barbijo,
@@ -130,7 +132,7 @@
 
     {{-- higiene --}}
     <div data-popover id="popover-higiene" role="tooltip"
-        class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-72 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400">
+        class="absolute z-30 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-72 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400">
         <div class="p-3 space-y-2">
             <h3 class="font-semibold text-gray-900 dark:text-white">Higiene del Personal</h3>
             <p>La visita debe tener las uñas cortas y limpias, tambien no debe presentar heridas en las manos. debera
@@ -142,17 +144,18 @@
 
     {{-- salud --}}
     <div data-popover id="popover-salud" role="tooltip"
-        class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-72 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400">
+        class="absolute z-30 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-72 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400">
         <div class="p-3 space-y-2">
             <h3 class="font-semibold text-gray-900 dark:text-white">Salud del trabajdor</h3>
-            <p>La visita de be estar en buen estado de salud, ya sea para evitar accidentes personales o que pueda contaminar el producto.</p>
+            <p>La visita de be estar en buen estado de salud, ya sea para evitar accidentes personales o que pueda
+                contaminar el producto.</p>
         </div>
         <div data-popper-arrow></div>
     </div>
 
     {{-- objetos extraños --}}
     <div data-popover id="popover-objetos" role="tooltip"
-        class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-72 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400">
+        class="absolute z-30 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-72 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400">
         <div class="p-3 space-y-2">
             <h3 class="font-semibold text-gray-900 dark:text-white">Objetos extraños</h3>
             <p>Los objetos extraños como ser: joyas, adornos, reloj, monedas, audifonos, basura, etc. estan

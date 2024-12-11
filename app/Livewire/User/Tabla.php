@@ -9,16 +9,13 @@ use Masmerise\Toaster\Toaster;
 
 class Tabla extends Component
 {
-    public $usuarios;
-    #[On('tablaUsuarios')]
-    public function mount()
-    {
-        $this->usuarios = User::all();
-    }
 
+    #[On('tablaUsuarios')]
     public function render()
     {
-        return view('livewire.user.tabla');
+        return view('livewire.user.tabla', [
+            'usuarios' => User::orderBy('id', 'desc')->paginate(10)
+        ]);
     }
 
     public function delete($id)

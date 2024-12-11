@@ -14,21 +14,21 @@ return new class extends Migration
         Schema::create('ord_lim_des', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->foreignId('sector_id')->nullable()->constrained()->onDelete('restrict');
-            $table->boolean('lunes_lo');
-            $table->boolean('lunes_des');
-            $table->boolean('martes_lo');
-            $table->boolean('martes_des');
-            $table->string('miercoles_lo');
-            $table->boolean('miercoles_des');
-            $table->boolean('jueves_lo');
-            $table->boolean('jueves_des');
-            $table->boolean('viernes_des_pro');
-            $table->boolean('sabado_lo');
-            $table->boolean('sabado_des');
-            $table->boolean('domingo_lo');
-            $table->boolean('domingo_des');
+            $table->boolean('lunes_lo')->nullable();
+            $table->boolean('lunes_des')->nullable();
+            $table->boolean('martes_lo')->nullable();
+            $table->boolean('martes_des')->nullable();
+            $table->boolean('miercoles_lo')->nullable();
+            $table->boolean('miercoles_des')->nullable();
+            $table->boolean('jueves_lo')->nullable();
+            $table->boolean('jueves_des')->nullable();
+            $table->boolean('viernes_des_pro')->nullable();
+            $table->boolean('sabado_lo')->nullable();
+            $table->boolean('sabado_des')->nullable();
+            $table->boolean('domingo_lo')->nullable();
+            $table->boolean('domingo_des')->nullable();
             $table->timestamps();
+            $table->foreignId('sector_id')->nullable()->constrained()->onDelete('restrict');
         });
     }
 

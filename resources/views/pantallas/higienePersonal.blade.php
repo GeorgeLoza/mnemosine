@@ -9,6 +9,7 @@
             nuevo</button>
     </a>
 
+
 @endsection
 
 @section('contenido')

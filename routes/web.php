@@ -22,9 +22,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/documentacion', [PantallaController::class, 'documentacion'])->name('documentacion.index');
     Route::get('/externoPersonal', [PantallaController::class, 'externoPersonal'])->name('externoPersonal.index');
     Route::get('/ordLimDes', [PantallaController::class, 'ordLimDes'])->name('ordLimDes.index');
+    Route::get('/verOrdLimDes', [PantallaController::class, 'verOrdLimDes'])->name('verOrdLimDes.index');
+    Route::get('/orp', [PantallaController::class, 'orp'])->name('orp.index');
+    Route::get('/orp/reporte/{id}', [PantallaController::class, 'reportOrp'])->name('orp.report');
 
     Route::get('/higiene', [MobileController::class, 'higienePersonal'])->name('mobile.higienePersonal');
+    Route::get('/externo', [MobileController::class, 'higieneExterno'])->name('mobile.higieneExterno');
     Route::get('/lavado', [MobileController::class, 'lavadoMano'])->name('mobile.lavadoMano');
+    Route::get('/verOLD', [MobileController::class, 'verOLD'])->name('mobile.verOLD');
 
     Route::post('/logout', [LoginController::class, 'cerrar'])->name('logout');
 

@@ -26,6 +26,10 @@ class OrdLimDes extends Model
 
     public function sector()
     {
-        return $this->belongsTo(sector::class);
+        return $this->belongsTo(Sector::class);
+    }
+    public function verOrdLimDes()
+    {
+        return $this->hasMany(VerificacionOrdLipDes::class);
     }
 }

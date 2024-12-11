@@ -6,6 +6,7 @@ use App\Models\OrdLimDes;
 use App\Models\sector;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Masmerise\Toaster\Toaster;
 
 class Tabla extends Component
 {
@@ -43,7 +44,7 @@ class Tabla extends Component
         $this->validate();
         OrdLimDes::create($this->allFields());
         $this->resetInputFields();
-        session()->flash('message', 'Registro creado exitosamente.');
+        Toaster::success('Registro guardado exitosamente!');
     }
 
     public function edit($id)
@@ -59,13 +60,13 @@ class Tabla extends Component
         $this->validate();
         OrdLimDes::findOrFail($this->ordLimDesId)->update($this->allFields());
         $this->resetInputFields();
-        session()->flash('message', 'Registro actualizado exitosamente.');
+        Toaster::success('Registro guardado exitosamente!');
     }
 
     public function delete($id)
     {
         OrdLimDes::findOrFail($id)->delete();
-        session()->flash('message', 'Registro eliminado exitosamente.');
+        Toaster::success('Registro eliminado exitosamente!');
     }
 
     public function allFields()

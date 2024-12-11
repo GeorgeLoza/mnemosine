@@ -8,15 +8,12 @@ use Livewire\Component;
 
 class Tabla extends Component
 {
-    public $externos;
-    #[On('tablaExternoPersonal')]
-    public function mount()
-    {
-        $this->externos = PersonalExterno::all();
-    }
 
+    #[On('tablaExternoPersonal')]
     public function render()
     {
-        return view('livewire.personal-externo.tabla');
+        return view('livewire.personal-externo.tabla', [
+            'externos' => PersonalExterno::orderBy('id', 'desc')->paginate(10)
+        ]);
     }
 }

@@ -11,8 +11,12 @@ export default {
     ],
     theme: {
         extend: {
-            fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+            fontSize: {
+                '2xs': '0.625rem', // 10px, más pequeño que xs
+                '3xs': '0.5rem',   // 8px, más pequeño que 2xs
+            },
+            gridTemplateColumns:{
+                '14': 'repeat(14, minmax(0, 1fr))',
             },
         },
     },

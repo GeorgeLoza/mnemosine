@@ -89,6 +89,8 @@
                 @endforeach
             </tbody>
         </table>
+        <!-- Paginación -->
+        {{ $externos->links() }}
     </div>
 
     <div wire:loading>
