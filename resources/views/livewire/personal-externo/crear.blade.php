@@ -1,8 +1,8 @@
-<div>
+<div class="flex w-screen justify-center">
     <div
-        class="w-full  p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+        class="w-full md:w-3/5 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
         <form class="space-y-4" wire:submit.prevent="submit">
-            <h5 class="text-xl font-medium text-gray-900 dark:text-white">BPH´S</h5>
+            <h5 class="text-xl font-medium text-gray-900 dark:text-white">Personal externo</h5>
             <div>
                 <label for="visita"
                     class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Visita</label>

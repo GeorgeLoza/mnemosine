@@ -25,7 +25,7 @@
 
 
                 <div id="accordion-{{ $sector->id }}" class="hidden p-2"
-                    aria-labelledby="accordion-{{ $sector->id }}"  >
+                    aria-labelledby="accordion-{{ $sector->id }}">
                     <ul>
                         @foreach ($sector->ordLimDes as $ordLimDes)
                             @php
@@ -34,73 +34,76 @@
                                 $mostrarProfunda = $diaActual == 'viernes' && $ordLimDes->viernes_des_pro == 1;
                             @endphp
 
-                            @if ($mostrarLimpieza || $mostrarDesinfeccion || $mostrarProfunda)
-                                <li class="mb-3 flex justify-between items-center">
-                                    <h6>{{ $ordLimDes->nombre }}</h6>
-                                    <div class="flex gap-3">
-                                        @if ($mostrarLimpieza)
-                                            <div class="form-check flex items-center gap-1">
-                                                <input type="checkbox"
-                                                    wire:model.live="estados.{{ $ordLimDes->id }}.limpieza" onclick='event.stopPropagation()'
-                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                                                    id="limpieza-{{ $ordLimDes->id }}">
-                                                <label class="text-sm text-gray-900 dark:text-gray-300"
-                                                    for="limpieza-{{ $ordLimDes->id }}">
-                                                    LO
-                                                </label>
-                                            </div>
-                                        @endif
+@if ($mostrarLimpieza || $mostrarDesinfeccion || $mostrarProfunda)
+<li class="mb-3 flex justify-between items-center" x-data="{ mostrarDetalles: true }" wire:key="acordeon-{{ $ordLimDes->id }}">
+    <h6>{{ $ordLimDes->nombre }}</h6>
+    <div class="flex gap-3">
+        @if ($mostrarLimpieza)
+            <div class="form-check flex items-center gap-1">
+                <input type="checkbox"
+                    wire:model.live="estados.{{ $ordLimDes->id }}.limpieza"
+                    @click="mostrarDetalles = true"
+                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    id="limpieza-{{ $ordLimDes->id }}">
+                <label class="text-sm text-gray-900 dark:text-gray-300"
+                    for="limpieza-{{ $ordLimDes->id }}">
+                    LO
+                </label>
+            </div>
+        @endif
 
-                                        @if ($mostrarDesinfeccion)
-                                            <div class="form-check flex items-center gap-1">
-                                                <input type="checkbox"
-                                                    wire:model.live="estados.{{ $ordLimDes->id }}.desinfeccion" onclick='event.stopPropagation()'
-                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                                                    id="desinfeccion-{{ $ordLimDes->id }}">
-                                                <label class="text-sm text-gray-900 dark:text-gray-300"
-                                                    for="desinfeccion-{{ $ordLimDes->id }}">
-                                                    D
-                                                </label>
-                                            </div>
-                                        @endif
+        @if ($mostrarDesinfeccion)
+            <div class="form-check flex items-center gap-1">
+                <input type="checkbox"
+                    wire:model.live="estados.{{ $ordLimDes->id }}.desinfeccion"
+                    @click="mostrarDetalles = true"
+                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    id="desinfeccion-{{ $ordLimDes->id }}">
+                <label class="text-sm text-gray-900 dark:text-gray-300"
+                    for="desinfeccion-{{ $ordLimDes->id }}">
+                    D
+                </label>
+            </div>
+        @endif
 
-                                        @if ($mostrarProfunda)
-                                            <div class="form-check flex items-center gap-1">
-                                                <input type="checkbox"
-                                                    wire:model.live="estados.{{ $ordLimDes->id }}.profunda" onclick='event.stopPropagation()'
-                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                                                    id="profunda-{{ $ordLimDes->id }}">
-                                                <label class="text-sm text-gray-900 dark:text-gray-300"
-                                                    for="profunda-{{ $ordLimDes->id }}">
-                                                    DP
-                                                </label>
-                                            </div>
-                                        @endif
-                                    </div>
+        @if ($mostrarProfunda)
+            <div class="form-check flex items-center gap-1">
+                <input type="checkbox"
+                    wire:model.live="estados.{{ $ordLimDes->id }}.profunda"
+                    @click="mostrarDetalles = true"
+                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    id="profunda-{{ $ordLimDes->id }}">
+                <label class="text-sm text-gray-900 dark:text-gray-300"
+                    for="profunda-{{ $ordLimDes->id }}">
+                    DP
+                </label>
+            </div>
+        @endif
+    </div>
+</li>
 
+<!-- Sección de observaciones y correcciones controlada por Alpine.js -->
+<div x-show="mostrarDetalles" class="mt-2">
+    @if (
+        (!$estados[$ordLimDes->id]['limpieza'] && $mostrarLimpieza) ||
+        (!$estados[$ordLimDes->id]['desinfeccion'] && $mostrarDesinfeccion) ||
+        (!$estados[$ordLimDes->id]['profunda'] && $mostrarProfunda))
+        <div>
+            <label for="observaciones-{{ $ordLimDes->id }}" class="text-sm text-gray-700">Observaciones</label>
+            <input type="text" wire:model.defer="estados.{{ $ordLimDes->id }}.observaciones"
+                id="observaciones-{{ $ordLimDes->id }}"
+                class="w-full border-gray-300 rounded shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+        </div>
+        <div class="mt-2">
+            <label for="correccion-{{ $ordLimDes->id }}" class="text-sm text-gray-700">Correcciones</label>
+            <input type="text" wire:model.defer="estados.{{ $ordLimDes->id }}.correccion"
+                id="correccion-{{ $ordLimDes->id }}"
+                class="w-full border-gray-300 rounded shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+        </div>
+    @endif
+</div>
+@endif
 
-
-                                </li>
-                                @if (
-                                    (!$estados[$ordLimDes->id]['limpieza'] && $mostrarLimpieza) ||
-                                        (!$estados[$ordLimDes->id]['desinfeccion'] && $mostrarDesinfeccion) ||
-                                        (!$estados[$ordLimDes->id]['profunda'] && $mostrarProfunda))
-                                    <div class="mt-2">
-                                        <label for="observaciones-{{ $ordLimDes->id }}"
-                                            class="text-sm text-gray-700">Observaciones</label>
-                                        <input type="text" wire:model="estados.{{ $ordLimDes->id }}.observaciones"
-                                            id="observaciones-{{ $ordLimDes->id }}"
-                                            class="w-full border-gray-300 rounded shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                                    </div>
-                                    <div class="mt-2">
-                                        <label for="correccion-{{ $ordLimDes->id }}"
-                                            class="text-sm text-gray-700">Correcciones</label>
-                                        <input type="text" wire:model="estados.{{ $ordLimDes->id }}.correccion"
-                                            id="correccion-{{ $ordLimDes->id }}"
-                                            class="w-full border-gray-300 rounded shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                                    </div>
-                                @endif
-                            @endif
                         @endforeach
                     </ul>
                     <button wire:click="registrarPorSector({{ $sector->id }})"
@@ -113,4 +116,3 @@
         @endforeach
     </div>
 </div>
-

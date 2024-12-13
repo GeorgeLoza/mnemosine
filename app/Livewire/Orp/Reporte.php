@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Orp;
 
+use App\Models\Amasado;
 use App\Models\Orp;
 use App\Models\Premezcla1;
 use App\Models\Premezcla2;
@@ -10,6 +11,7 @@ use App\Models\PreparadorMaestro;
 use App\Models\Receta;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
+use Livewire\Attributes\On;
 
 class Reporte extends Component
 {
@@ -19,74 +21,61 @@ class Reporte extends Component
     public $receta;
     public $preparacion;
     public $saldo_preparacion;
-    public $premezcla1_resultados;
-    public $premezcla2_resultados;
-    public $premezcla3_resultados;
-    public $preMaestro_resultados;
     public $resultados;
 
+    public $amasado;
 
 
+    #[On('reporte')]
     public function mount()
     {
-
         $this->resultados = array_values(array_merge(
             Premezcla1::where('orp_id', $this->orpId)
-                ->select(['azucar'])
+                ->select(['azucar'])->orderBy('id', 'desc')
                 ->first()?->toArray() ?? ['sin datos'],
-                Premezcla1::where('orp_id', $this->orpId)
-                ->select(['leche'])
+            Premezcla1::where('orp_id', $this->orpId)
+                ->select(['leche'])->orderBy('id', 'desc')
                 ->first()?->toArray() ?? ['sin datos'],
-                Premezcla1::where('orp_id', $this->orpId)
-                ->select(['gluten'])
+            Premezcla1::where('orp_id', $this->orpId)
+                ->select(['gluten'])->orderBy('id', 'desc')
                 ->first()?->toArray() ?? ['sin datos'],
-                Premezcla1::where('orp_id', $this->orpId)
-                ->select([ 'sal_yodada'])
+            Premezcla1::where('orp_id', $this->orpId)
+                ->select(['sal_yodada'])->orderBy('id', 'desc')
                 ->first()?->toArray() ?? ['sin datos'],
-                Premezcla1::where('orp_id', $this->orpId)
-                ->select(['propionato_calcio'])
+            Premezcla1::where('orp_id', $this->orpId)
+                ->select(['propionato_calcio'])->orderBy('id', 'desc')
                 ->first()?->toArray() ?? ['sin datos'],
-                Premezcla1::where('orp_id', $this->orpId)
-                ->select([ 'esteaoril_lactilato_sodio'])
+            Premezcla1::where('orp_id', $this->orpId)
+                ->select(['esteaoril_lactilato_sodio'])->orderBy('id', 'desc')
                 ->first()?->toArray() ?? ['sin datos'],
-                Premezcla1::where('orp_id', $this->orpId)
-                ->select(['almidon'])
+            Premezcla1::where('orp_id', $this->orpId)
+                ->select(['almidon'])->orderBy('id', 'desc')
                 ->first()?->toArray() ?? ['sin datos'],
             Premezcla2::where('orp_id', $this->orpId)
-                ->select(['lecitina_soya'])
+                ->select(['lecitina_soya'])->orderBy('id', 'desc')
                 ->first()?->toArray() ?? ['sin datos'],
-                Premezcla2::where('orp_id', $this->orpId)
-                ->select(['extracto_malta'])
+            Premezcla2::where('orp_id', $this->orpId)
+                ->select(['extracto_malta'])->orderBy('id', 'desc')
                 ->first()?->toArray() ?? ['sin datos'],
             Premezcla3::where('orp_id', $this->orpId)
-                ->select(['manteca'])
+                ->select(['manteca'])->orderBy('id', 'desc')
                 ->first()?->toArray() ?? ['sin datos'],
-                Premezcla3::where('orp_id', $this->orpId)
-                ->select(['emulsificante'])
+            Premezcla3::where('orp_id', $this->orpId)
+                ->select(['emulsificante'])->orderBy('id', 'desc')
                 ->first()?->toArray() ?? ['sin datos'],
             PreparadorMaestro::where('orp_id', $this->orpId)
-                ->select(['harina_trigo'])
+                ->select(['harina_trigo'])->orderBy('id', 'desc')
                 ->first()?->toArray() ?? ['sin datos'],
-                PreparadorMaestro::where('orp_id', $this->orpId)
-                ->select(['levadura'])
+            PreparadorMaestro::where('orp_id', $this->orpId)
+                ->select(['levadura'])->orderBy('id', 'desc')
                 ->first()?->toArray() ?? ['sin datos'],
-                PreparadorMaestro::where('orp_id', $this->orpId)
-                ->select([ 'agua'])
+            PreparadorMaestro::where('orp_id', $this->orpId)
+                ->select(['agua'])->orderBy('id', 'desc')
                 ->first()?->toArray() ?? ['sin datos'],
         ));
 
-
-
-
-
-
-
-
-
-
-
         $this->orp = Orp::where('id', $this->orpId)->first();
-        $this->receta = Receta::where('producto_id', $this->orp->producto_id)
+        $this->receta = Receta::where('producto_id', $this->orp->producto_id)->whereNot('etapa', 'Decorado Pintado')
             ->select('etapa', DB::raw('GROUP_CONCAT(id) as recetas_ids')) // Agrupa por etapa
             ->groupBy('etapa')
             ->get()
@@ -97,10 +86,8 @@ class Reporte extends Component
             });
         $this->preparacion = floor($this->orp->lote);
         $this->saldo_preparacion = $this->orp->lote - $this->preparacion;
-
-
-
-
+        //amasado
+        $this->amasado = Amasado::where('orp_id', $this->orpId)->get();
     }
 
     public function render()

@@ -8,15 +8,14 @@
         </div>
     </div>
     <div class="border border-gray-400 rounded p-2">
-        <h1 class="font-bold uppercase">Preparacion de insumos</h1>
+        <h2 class="font-bold uppercase">Preparacion de insumos</h2>
         <table class="w-full text-xs text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 text-center">
                 <tr>
                     <th>#</th>
                     <th>item</th>
-                    <th>cantidad Estimada</th>
-                    <th>cantidad Real</th>
+                    <th>cantidad Estimada [kg]</th>
+                    <th>cantidad Real [kg]</th>
                     @for ($i = 1; $i <= $preparacion; $i++)
                         <th>{{ $i }} PP</th>
                     @endfor
@@ -54,14 +53,14 @@
                                 {{ $loop->parent->iteration }}.{{ $loop->iteration }}
                             </th>
                             <td>{{ $item->item->nombre }}</td>
-                            <td>{{ $item->cantidad * $orp->lote }} kg.</td>
+                            <td class="text-center">{{ $item->cantidad * $orp->lote }} </td>
 
-                            <td>
+                            <td class="text-green-600 dark:text-green-500 text-center">
                                 @php
                                     $contadorRes = $contadorRes + 1;
                                 @endphp
 
-                                {{ $resultados[$contadorRes] ?? 'sin datos' }}
+                                {{ $resultados[$contadorRes] ?? 'Sin datos' }}
 
                             </td>
                             @for ($i = 1; $i <= $preparacion; $i++)
@@ -79,16 +78,34 @@
         </table>
     </div>
 
-
-
-    <ul>
-        @foreach ($resultados as $index => $valor)
-            <li>Elemento {{ $index }}: {{ $valor }}</li>
-        @endforeach
-    </ul>
-    {{-- {{ $premezcla1_resultados}}
-    {{ $premezcla2_resultados}}
-    {{ $premezcla3_resultados}}
-    {{ $preMaestro_resultados}} --}}
-    {{-- {{$resultados}} --}}
+    <div class="border border-gray-400 rounded p-2">
+        <h2 class="font-bold uppercase">Amasado</h2>
+        <table class="w-full text-xs text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 text-center">
+                <tr>
+                    <th>#</th>
+                    <th>preparacion</th>
+                    <th>hora inicio</th>
+                    <th>Tempo de amasado CTTE [min]</th>
+                    <th>Tempo de amasado con levadura [min]</th>
+                    <th>Temperatura de masa [°C]</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($amasado as $dato)
+                    <tr
+                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        <th scope="row" class="p-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {{ $loop->iteration }}
+                        </th>
+                        <td>{{ $dato->preparacion }}</td>
+                        <td>{{ $dato->tiempo_amasado1 }}</td>
+                        <td>{{ $dato->tiempo_amasado2 }}</td>
+                        <td>{{ $dato->temperatura }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 </div>

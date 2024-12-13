@@ -8,8 +8,8 @@
     <link rel="manifest" href="/manifest.json">
 
     <script src="{{ asset('js/flowbite.js') }}"></script>
-    <link rel="stylesheet" href="{{ asset('build/assets/app-BUyHLSEz.css') }}">
-    <script src="{{ asset('build/assets/app-BJi2HfH9.js') }}" defer></script>
+    <link rel="stylesheet" href="{{ asset('build/assets/app-BMfQ4LGQ.css') }}">
+    <script src="{{ asset('build/assets/app-BJi2HfH9.js ') }}" defer></script>
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
     @livewireStyles
@@ -82,11 +82,6 @@
                                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Personal
                                     Externo</a>
                             </li>
-                            <li>
-                                <a href=""
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Curacion
-                                    y dotacion</a>
-                            </li>
                         </ul>
 
                     </div>
@@ -149,6 +144,7 @@
     @livewire('wire-elements-modal')
     <x-toaster-hub />
     @livewireScripts
+    <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
 </body>
 
 </html>

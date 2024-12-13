@@ -175,8 +175,10 @@ class Crear extends ModalComponent
                     'levadura',
                     'agua',
                 ]);
+                $this->dispatch('reporte');
+            $this->closeModal();
+            $this->dispatch('success', mensaje: 'ORP registrado exitosamente');
             } catch (\Throwable $th) {
-                dd($th);
                 Toaster::error('Fallo al momento de registrar: ' . $th->getMessage());
             }
         }

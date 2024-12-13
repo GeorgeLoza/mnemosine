@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="manifest" href="/manifest.json">
-    <link rel="stylesheet" href="{{ asset('build/assets/app-BUyHLSEz.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/assets/app-BMfQ4LGQ.css') }}">
     <script src="{{ asset('build/assets/app-BJi2HfH9.js') }}" defer></script>
 
     <script src="{{ asset('js/flowbite.js') }}"></script>
@@ -17,14 +17,14 @@
     <title>Document</title>
 </head>
 
-<body class="flex h-screen justify-center items-center dark:bg-gray-800 dark:text-white">
+<body class="flex h-screen justify-center items-center bg-gray-50  dark:bg-gray-800 dark:text-white">
 
 
     <section class="bg-gray-50 dark:bg-gray-800">
         <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
 
             <div
-                class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+                class="w-80 bg-white rounded-lg shadow dark:border dark:bg-gray-800 dark:border-gray-700">
                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                     <h1
                         class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">

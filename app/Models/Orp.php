@@ -35,4 +35,8 @@ class Orp extends Model
     {
         return $this->hasMany(PreparadorMaestro::class);
     }
+    public function amasado()
+    {
+        return $this->hasMany(Amasado::class);
+    }
 }
