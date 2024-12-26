@@ -39,4 +39,8 @@ class Orp extends Model
     {
         return $this->hasMany(Amasado::class);
     }
+    public function decorado()
+    {
+        return $this->hasMany(Decorado::class);
+    }
 }

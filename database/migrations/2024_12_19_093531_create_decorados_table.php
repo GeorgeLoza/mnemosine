@@ -11,18 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('amasados', function (Blueprint $table) {
+        Schema::create('decorados', function (Blueprint $table) {
             $table->id();
-            $table->date('tiempo')->nullable();
-            $table->decimal('preparacion',5, 3)->nullable();
             $table->foreignId('orp_id')->nullable()->constrained('orps')->onDelete('cascade');
-            $table->decimal('tiempo_amasado1', 5, 2)->nullable();
-            $table->decimal('tiempo_amasado2', 5, 2)->nullable();
-            $table->decimal('temperatura', 5, 2)->nullable();
+            $table->date('tiempo')->nullable();
             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
             $table->foreignId('responsable')->nullable()->constrained('users')->onDelete('set null');
-            $table->text('observaciones')->nullable();
-            $table->text('correccion')->nullable();
+            $table->decimal('huevo', 8, 4)->nullable();
+            $table->decimal('semilla', 8, 4)->nullable();
+            $table->decimal('polenta', 8, 4)->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('amasados');
+        Schema::dropIfExists('decorados');
     }
 };

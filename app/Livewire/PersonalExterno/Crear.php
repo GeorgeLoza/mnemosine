@@ -63,6 +63,7 @@ class Crear extends Component
 
             Toaster::success('Registro guardado exitosamente!');
 
+
             // Reset fields after submission
             $this->reset([
                 'visita',
@@ -77,7 +78,6 @@ class Crear extends Component
                 'extra'
             ]);
         } catch (\Throwable $th) {
-            dd($th);
             Toaster::error('Fallo al momento de registrar: ' . $th->getMessage());
         }
     }

@@ -7,9 +7,10 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Container\Attributes\Auth;
 use Livewire\Component;
+use LivewireUI\Modal\ModalComponent;
 use Masmerise\Toaster\Toaster;
 
-class Crear extends Component
+class Crear extends ModalComponent
 {
     /*inputs */
     public $trabajador_id;

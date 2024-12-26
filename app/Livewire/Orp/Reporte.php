@@ -3,6 +3,8 @@
 namespace App\Livewire\Orp;
 
 use App\Models\Amasado;
+use App\Models\Decorado;
+use App\Models\DivisionFormadoDecorado;
 use App\Models\Orp;
 use App\Models\Premezcla1;
 use App\Models\Premezcla2;
@@ -24,6 +26,10 @@ class Reporte extends Component
     public $resultados;
 
     public $amasado;
+
+    public $decoraciones;
+    public $recetaDecorado;
+    public $division;
 
 
     #[On('reporte')]
@@ -74,6 +80,8 @@ class Reporte extends Component
                 ->first()?->toArray() ?? ['sin datos'],
         ));
 
+        $this->decoraciones =Decorado::where('orp_id', $this->orpId)->first();
+
         $this->orp = Orp::where('id', $this->orpId)->first();
         $this->receta = Receta::where('producto_id', $this->orp->producto_id)->whereNot('etapa', 'Decorado Pintado')
             ->select('etapa', DB::raw('GROUP_CONCAT(id) as recetas_ids')) // Agrupa por etapa
@@ -88,6 +96,18 @@ class Reporte extends Component
         $this->saldo_preparacion = $this->orp->lote - $this->preparacion;
         //amasado
         $this->amasado = Amasado::where('orp_id', $this->orpId)->get();
+        //decorado
+        $this->recetaDecorado = Receta::where('producto_id', $this->orp->producto_id)->where('etapa', 'Decorado Pintado')
+            ->select('etapa', DB::raw('GROUP_CONCAT(id) as recetas_ids')) // Agrupa por etapa
+            ->groupBy('etapa')
+            ->get()
+            ->map(function ($grupo) {
+                // Recuperar las recetas individuales para cada etapa
+                $grupo->recetas = Receta::whereIn('id', explode(',', $grupo->recetas_ids))->get();
+                return $grupo;
+            });
+            //amasado
+        $this->division = DivisionFormadoDecorado::where('orp_id', $this->orpId)->get();
     }
 
     public function render()

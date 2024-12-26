@@ -16,7 +16,7 @@
                         rol
                     </th>
                     <th scope="col" class="px-2 py-1">
-                        turno
+                        Área
                     </th>
                     <th scope="col" class="px-2 py-1">
                         acciones
@@ -41,7 +41,18 @@
                             {{ $usuario->rol }}
                         </td>
                         <td class="px-2 py-1.5">
-                            {{ $usuario->turno }}
+                            @if($usuario->turno == 'Central')
+                            Administración
+                            @endif
+                            @if($usuario->turno == 'Turno 1')
+                            Embolsado
+                            @endif
+                            @if($usuario->turno == 'Turno 2')
+                            Hornos
+                            @endif
+                            @if($usuario->turno == 'Turno 3')
+                            Producción
+                            @endif
                         </td>
                         <td class="px-2 py-1.5">
                             <div class=" flex gap-2">

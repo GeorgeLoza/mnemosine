@@ -9,12 +9,12 @@
     <div
             x-data="LivewireUIModal()"
             x-on:close.stop="setShowPropertyTo(false)"
-            x-on:keydown.escape.window="show && closeModalOnEscape()"
+            x-on:keydown.escape.window="closeModalOnEscape()"
             x-show="show"
-            class="fixed inset-0 z-10 overflow-y-auto"
+            class="fixed inset-0 z-40 overflow-y-auto"
             style="display: none;"
     >
-        <div class="flex items-end justify-center min-h-screen px-4 pt-4 pb-10 text-center sm:block sm:p-0">
+        <div class="flex items-center justify-center mx-auto w-auto p-12 sm:p-0 sm:w-2/4 md:w-2/3 lg:w-1/2 text-center  ">
             <div
                     x-show="show"
                     x-on:click="closeModalOnClickAway()"
@@ -40,7 +40,7 @@
                     x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
                     x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                     x-bind:class="modalWidth"
-                    class="inline-block w-full align-bottom bg-white dark:bg-gray-900 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full"
+                    class="inline-block w-full p-2 md:py-7 md:px-6 align-bottom bg-white dark:bg-gray-800 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full"
                     id="modal-container"
                     x-trap.noscroll.inert="show && showActiveComponent"
                     aria-modal="true"

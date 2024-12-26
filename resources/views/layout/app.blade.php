@@ -8,7 +8,7 @@
     <link rel="manifest" href="/manifest.json">
 
     <script src="{{ asset('js/flowbite.js') }}"></script>
-    <link rel="stylesheet" href="{{ asset('build/assets/app-BMfQ4LGQ.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/assets/app-DdBxNlkz.css') }}">
     <script src="{{ asset('build/assets/app-BJi2HfH9.js ') }}" defer></script>
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')

@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layout.layoutVacio')
 
 @section('titulo')
 @endsection

@@ -63,14 +63,14 @@
 
                     <div class=" w-1/2">
                         <label for="turno"
-                            class="block mb-1 text-sm font-medium text-gray-900 dark:text-white capitalize">Turno</label>
+                            class="block mb-1 text-sm font-medium text-gray-900 dark:text-white capitalize">Área</label>
                         <select id="turno" wire:model="turno" value="{{ old('turno') }}"
                             class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            <option selected>Escoge un turno</option>
-                            <option value="Central">Central</option>
-                            <option value="Turno 1">Turno 1</option>
-                            <option value="Turno 2">Turno 2</option>
-                            <option value="Turno 3">Turno 3</option>
+                            <option selected>Escoge el área de trabajo</option>
+                            <option value="Central">Administracion</option>
+                            <option value="Turno 1">Embolsado</option>
+                            <option value="Turno 2">Horno</option>
+                            <option value="Turno 3">Produccion</option>
                         </select>
                         @error('turno')
                             <p class="mt-2 text-sm text-red-600 dark:text-red-500"> {{ $message }}</p>

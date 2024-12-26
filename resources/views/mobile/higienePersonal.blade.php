@@ -4,8 +4,18 @@
 @endsection
 
 @section('contenido')
+<div class="justify-end">
+    <button onclick="Livewire.dispatch('openModal', { component: 'higienePersonal.crear', arguments: {id :1} })"
+    class="rounded p-2 bg-blue-500 text-white">Busqueda manual</button>
+
+</div>
+<div>
+
+</div>
+@livewire('higienePersonal.lista')
+
     <div class="md:flex justify-center">
-        @livewire('higienePersonal.crear')
+        {{-- @livewire('higienePersonal.crear') --}}
     </div>
 @endsection
 
