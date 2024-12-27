@@ -59,7 +59,7 @@ class Crear extends ModalComponent
 
     public function mount()
     {
-        
+
         $lote = Orp::where('id', $this->orp)->value('lote'); // Obtiene directamente el valor del campo 'lote'
 
         $this->preparaciones = $this->generarOpciones($lote); // Generar las opciones
@@ -128,7 +128,7 @@ class Crear extends ModalComponent
                 'peso_ajonjoli2' => $this->peso_ajonjoli2,
                 'peso_ajonjoli3' => $this->peso_ajonjoli3,
                 'peso_ajonjoli4' => $this->peso_ajonjoli4,
-                
+
                 'centreado' => $this->centreado,
                 'uniformidad' => $this->uniformidad,
                 'homogeneidad' => $this->homogeneidad,
@@ -138,6 +138,8 @@ class Crear extends ModalComponent
                 'observaciones' => $this->observaciones,
                 'correccion' => $this->correccion,
             ]);
+
+            $this->dispatch('reporte');
             $this->closeModal();
             Toaster::success('Registro guardado exitosamente!');
 
@@ -159,7 +161,7 @@ class Crear extends ModalComponent
                 'correccion',
             ]);
         } catch (\Throwable $th) {
-            
+
             Toaster::error('Fallo al momento de registrar: ' . $th->getMessage());
         }
     }

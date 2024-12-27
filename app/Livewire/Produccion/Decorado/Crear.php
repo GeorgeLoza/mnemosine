@@ -54,7 +54,8 @@ class Crear extends ModalComponent
                 'polenta' => $this->polenta,
 
             ]);
-
+            $this->dispatch('reporte');
+            $this->closeModal();
             Toaster::success('Registro guardado exitosamente!');
 
             // Reset fields after submission

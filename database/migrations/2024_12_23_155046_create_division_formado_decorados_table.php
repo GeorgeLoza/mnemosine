@@ -24,9 +24,9 @@ return new class extends Migration
             $table->decimal('peso_ajonjoli2', 5, 2)->nullable();
             $table->decimal('peso_ajonjoli3', 5, 2)->nullable();
             $table->decimal('peso_ajonjoli4', 5, 2)->nullable();
-            $table->boolean('centreado');
-            $table->boolean('uniformidad');
-            $table->boolean('homogeneidad');
+            $table->boolean('centreado')->nullable();
+            $table->boolean('uniformidad')->nullable();
+            $table->boolean('homogeneidad')->nullable();
             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
             $table->foreignId('responsable_pintado')->nullable()->constrained('users')->onDelete('set null');
             $table->foreignId('responsable_decorado')->nullable()->constrained('users')->onDelete('set null');

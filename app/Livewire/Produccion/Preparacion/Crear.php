@@ -43,9 +43,7 @@ class Crear extends ModalComponent
     public $levadura;
     public $agua;
 
-    protected $rules = [
-
-    ];
+    protected $rules = [];
 
 
     public function updatedCodigo()
@@ -87,7 +85,8 @@ class Crear extends ModalComponent
                     'almidon' => $this->almidon,
 
                 ]);
-
+                $this->dispatch('reporte');
+                $this->closeModal();
                 Toaster::success('Registro guardado exitosamente!');
 
                 // Reset fields after submission
@@ -101,7 +100,7 @@ class Crear extends ModalComponent
                     'almidon'
                 ]);
             } catch (\Throwable $th) {
-                dd($th);
+
                 Toaster::error('Fallo al momento de registrar: ' . $th->getMessage());
             }
         }
@@ -117,7 +116,8 @@ class Crear extends ModalComponent
                     'lecitina_soya' => $this->lecitina_soya,
                     'extracto_malta' => $this->extracto_malta,
                 ]);
-
+                $this->dispatch('reporte');
+                $this->closeModal();
                 Toaster::success('Registro guardado exitosamente!');
 
                 // Reset fields after submission
@@ -126,7 +126,6 @@ class Crear extends ModalComponent
                     'extracto_malta',
                 ]);
             } catch (\Throwable $th) {
-                dd($th);
                 Toaster::error('Fallo al momento de registrar: ' . $th->getMessage());
             }
         }
@@ -141,7 +140,8 @@ class Crear extends ModalComponent
                     'manteca' => $this->manteca,
                     'emulsificante' => $this->emulsificante,
                 ]);
-
+                $this->dispatch('reporte');
+                $this->closeModal();
                 Toaster::success('Registro guardado exitosamente!');
 
                 // Reset fields after submission
@@ -150,7 +150,7 @@ class Crear extends ModalComponent
                     'emulsificante',
                 ]);
             } catch (\Throwable $th) {
-                dd($th);
+
                 Toaster::error('Fallo al momento de registrar: ' . $th->getMessage());
             }
         }
@@ -176,12 +176,11 @@ class Crear extends ModalComponent
                     'agua',
                 ]);
                 $this->dispatch('reporte');
-            $this->closeModal();
-            $this->dispatch('success', mensaje: 'ORP registrado exitosamente');
+                $this->closeModal();
+                $this->dispatch('success', mensaje: 'ORP registrado exitosamente');
             } catch (\Throwable $th) {
                 Toaster::error('Fallo al momento de registrar: ' . $th->getMessage());
             }
         }
-
     }
 }

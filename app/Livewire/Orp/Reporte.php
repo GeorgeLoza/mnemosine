@@ -5,6 +5,8 @@ namespace App\Livewire\Orp;
 use App\Models\Amasado;
 use App\Models\Decorado;
 use App\Models\DivisionFormadoDecorado;
+use App\Models\Fermentacion;
+use App\Models\Horneado;
 use App\Models\Orp;
 use App\Models\Premezcla1;
 use App\Models\Premezcla2;
@@ -30,6 +32,8 @@ class Reporte extends Component
     public $decoraciones;
     public $recetaDecorado;
     public $division;
+    public $fermentacion;
+    public $horneado;
 
 
     #[On('reporte')]
@@ -80,7 +84,7 @@ class Reporte extends Component
                 ->first()?->toArray() ?? ['sin datos'],
         ));
 
-        $this->decoraciones =Decorado::where('orp_id', $this->orpId)->first();
+        $this->decoraciones = Decorado::where('orp_id', $this->orpId)->first();
 
         $this->orp = Orp::where('id', $this->orpId)->first();
         $this->receta = Receta::where('producto_id', $this->orp->producto_id)->whereNot('etapa', 'Decorado Pintado')
@@ -106,8 +110,12 @@ class Reporte extends Component
                 $grupo->recetas = Receta::whereIn('id', explode(',', $grupo->recetas_ids))->get();
                 return $grupo;
             });
-            //amasado
+        //division
         $this->division = DivisionFormadoDecorado::where('orp_id', $this->orpId)->get();
+        //division
+        $this->fermentacion = Fermentacion::where('orp_id', $this->orpId)->get();
+        //horneado
+        $this->horneado = Horneado::where('orp_id', $this->orpId)->get();
     }
 
     public function render()

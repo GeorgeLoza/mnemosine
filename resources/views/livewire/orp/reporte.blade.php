@@ -256,5 +256,92 @@
             </tbody>
         </table>
     </div>
+    {{-- fermentacion --}}
+    <div class="border border-gray-400 rounded p-2">
+        <div class="flex justify-between">
+            <h2 class="font-bold uppercase">Fermentacion</h2>
+            <div>
+                <button class="bg-green-500 text-white rounded px-2 font-bold text-md"
+                    wire:click="$dispatch('openModal', {component: 'produccion.amasado.crear', arguments: { orp: '{{ $orp->id }}'}})">
+                    +
+                </button>
+            </div>
+        </div>
+
+        <table class="w-full text-xs text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 text-center">
+                <tr>
+                    <th>#</th>
+                    <th>preparacion</th>
+                    <th>N Camara</th>
+                    <th>hora inicio</th>
+                    <th>% humedad</th>
+                    <th>Temperatura [°C]</th>
+                    <th>hora final</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                @foreach ($fermentacion as $dato)
+                    <tr
+                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        <th scope="row" class="p-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {{ $loop->iteration }}
+                        </th>
+                        <td>{{ $dato->preparacion / 1 }}</td>
+                        <td>{{ $dato->ncamara }}</td>
+                        <td>{{ $dato->hora_inicio }}</td>
+                        <td>{{ $dato->humedad }}</td>
+                        <td>{{ $dato->temperatura }}</td>
+                        <td>{{ $dato->hora_salida }}</td>
+                        <td></td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+    {{-- horneado --}}
+    <div class="border border-gray-400 rounded p-2">
+        <div class="flex justify-between">
+            <h2 class="font-bold uppercase">horneado</h2>
+            <div>
+                <button class="bg-green-500 text-white rounded px-2 font-bold text-md"
+                    wire:click="$dispatch('openModal', {component: 'produccion.amasado.crear', arguments: { orp: '{{ $orp->id }}'}})">
+                    +
+                </button>
+            </div>
+        </div>
+
+        <table class="w-full text-xs text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 text-center">
+                <tr>
+                    <th>#</th>
+                    <th>preparacion</th>
+                    <th>Verificacion de corte</th>
+                    <th>N horno</th>
+                    <th>tiempo horneado</th>
+                    <th>temperatura [°C]</th>
+                    <th>temperatura nucleo[°C]</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                @foreach ($horneado as $dato)
+                    <tr
+                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        <th scope="row" class="p-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {{ $loop->iteration }}
+                        </th>
+                        <td>{{ $dato->preparacion / 1 }}</td>
+                        <td>{{ $dato->verificacion_corte }}</td>
+                        <td>{{ $dato->nhorno }}</td>
+                        <td>{{ $dato->tiempo_horneado }}</td>
+                        <td>{{ $dato->temperatura }}</td>
+                        <td>{{ $dato->temperatura_nucleo }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 
 </div>

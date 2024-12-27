@@ -96,6 +96,7 @@ class Crear extends ModalComponent
                 'observaciones' => $this->observaciones,
                 'correccion' => $this->correccion,
             ]);
+            $this->dispatch('reporte');
             $this->closeModal();
             Toaster::success('Registro guardado exitosamente!');
 
@@ -110,7 +111,7 @@ class Crear extends ModalComponent
                 'correccion',
             ]);
         } catch (\Throwable $th) {
-            dd($th);
+
             Toaster::error('Fallo al momento de registrar: ' . $th->getMessage());
         }
     }
