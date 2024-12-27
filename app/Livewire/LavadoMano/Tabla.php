@@ -13,7 +13,7 @@ class Tabla extends Component
     public function render()
     {
         return view('livewire.lavado-mano.tabla',[
-            'lavados' => LavadoMano::orderBy('id', 'desc')->paginate(10)
+            'lavados' => LavadoMano::orderBy('id', 'desc')->paginate(50)
         ]);
     }
 }
