@@ -11,6 +11,14 @@
 @endsection
 @section('contenido')
     @livewire('lavadoMano.tabla')
+
+    <div class="flex flex-col justify-center w-full">
+        <br>
+        <p>REPORTE</p>
+        <div class="justify-end">
+            @livewire('lavadoMano.reporte')
+        </div>
+    </div>
 @endsection
 
 <div wire:loading>

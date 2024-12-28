@@ -13,7 +13,7 @@ class Tabla extends Component
     public function render()
     {
         return view('livewire.higiene-personal.tabla',[
-            'higienes' => HigienePersonal::orderBy('id', 'desc')->paginate(10)
+            'higienes' => HigienePersonal::orderBy('id', 'desc')->paginate(50)
         ]);
     }
 }
