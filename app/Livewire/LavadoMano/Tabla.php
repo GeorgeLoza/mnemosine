@@ -16,4 +16,10 @@ class Tabla extends Component
             'lavados' => LavadoMano::orderBy('id', 'desc')->paginate(50)
         ]);
     }
+
+
+
+
+
+
 }

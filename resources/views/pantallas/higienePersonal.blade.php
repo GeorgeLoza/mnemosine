@@ -14,6 +14,9 @@
 
 @section('contenido')
     @livewire('higienePersonal.tabla')
+    <br>
+    <p>REPORTE</p>
+    @livewire('higienePersonal.reporte')
 @endsection
 
 <div wire:loading>
