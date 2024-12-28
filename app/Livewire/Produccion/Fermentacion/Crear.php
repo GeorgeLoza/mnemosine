@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Livewire\Produccion\Horneado;
+namespace App\Livewire\Produccion\Fermentacion;
 
-use App\Models\Horneado;
+use App\Models\Fermentacion;
 use App\Models\Orp;
 use App\Models\User;
 use Carbon\Carbon;
@@ -14,11 +14,11 @@ class Crear extends ModalComponent
 {
     public $orp;
     public $preparaciones;
-    public $verificacion_horno;
-    public $nhorno;
-    public $tiempo_horneado;
-    public $temperatura_nucleo;
+    public $numero_camara;
+    public $hora_inicio;
+    public $humedad;
     public $temperatura;
+    public $hora_salida;
     public $observaciones;
     public $correccion;
 
@@ -31,10 +31,11 @@ class Crear extends ModalComponent
     
     protected $rules = [
         'preparacion' => 'required',
-        'nhorno' => 'required',
-        'tiempo_horneado' => 'required',
-        'temperatura_nucleo' => 'required',
+        'numero_camara' => 'required',
+        'hora_inicio' => 'required',
+        'humedad' => 'required',
         'temperatura' => 'required',
+        'hora_salida' => 'required',
     ];
 
 
@@ -77,7 +78,7 @@ class Crear extends ModalComponent
 
     public function render()
     {
-        return view('livewire.produccion.horneado.crear');
+        return view('livewire.produccion.fermentacion.crear');
     }
 
     public function submit()
@@ -85,15 +86,15 @@ class Crear extends ModalComponent
 
         $this->validate();
         try {
-            Horneado::create([
+            Fermentacion::create([
                 'tiempo' => Carbon::now(),
                 'preparacion' => $this->preparacion,
                 'orp_id' => $this->orp,
-                'verificacion_horno' => $this->verificacion_horno,
-                'nhorno' => $this->nhorno,
-                'tiempo_horneado' => $this->tiempo_horneado,
-                'temperatura_nucleo' => $this->temperatura_nucleo,
+                'numero_camara' => $this->numero_camara,
+                'hora_inicio' => $this->hora_inicio,
+                'humedad' => $this->humedad,
                 'temperatura' => $this->temperatura,
+                'hora_salida' => $this->hora_salida,
                 'responsable' => $this->user->id,
                 'user_id' => auth()->user()->id,
                 'observaciones' => $this->observaciones,
@@ -105,12 +106,12 @@ class Crear extends ModalComponent
 
             // Reset fields after submission
             $this->reset([
-                'verificacion_horno',
-                'nhorno',
-                'tiempo_horneado',
+                'preparacion',
+                'numero_camara',
+                'hora_inicio',
                 'humedad',
-                'temperatura_nucleo',
                 'temperatura',
+                'hora_salida',
                 'responsable',
                 'observaciones',
                 'correccion',
@@ -119,5 +120,4 @@ class Crear extends ModalComponent
             Toaster::error('Fallo al momento de registrar: ' . $th->getMessage());
         }
     }
-    
 }

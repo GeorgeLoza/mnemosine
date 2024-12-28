@@ -15,7 +15,7 @@ class Horneado extends Model
         'preparacion',
         'orp_id',
         'verificacion_corte',
-        'numero',
+        'nhorno',
         'tiempo_horneado',
         'temperatura',
         'temperatura_nucleo',

@@ -262,7 +262,7 @@
             <h2 class="font-bold uppercase">Fermentacion</h2>
             <div>
                 <button class="bg-green-500 text-white rounded px-2 font-bold text-md"
-                    wire:click="$dispatch('openModal', {component: 'produccion.amasado.crear', arguments: { orp: '{{ $orp->id }}'}})">
+                    wire:click="$dispatch('openModal', {component: 'produccion.fermentacion.crear', arguments: { orp: '{{ $orp->id }}'}})">
                     +
                 </button>
             </div>
@@ -306,7 +306,7 @@
             <h2 class="font-bold uppercase">horneado</h2>
             <div>
                 <button class="bg-green-500 text-white rounded px-2 font-bold text-md"
-                    wire:click="$dispatch('openModal', {component: 'produccion.amasado.crear', arguments: { orp: '{{ $orp->id }}'}})">
+                    wire:click="$dispatch('openModal', {component: 'produccion.horneado.crear', arguments: { orp: '{{ $orp->id }}'}})">
                     +
                 </button>
             </div>

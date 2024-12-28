@@ -3,8 +3,7 @@
         @csrf
         <h5 class="text-xl font-medium text-gray-900 dark:text-white">fermentacion</h5>
         <div class="flex items-center p-2">
-            <label for="codigo" class="w-3/6 block text-sm font-medium text-gray-900 dark:text-white">Código de
-                responsable: </label>
+            <label for="codigo" class="w-3/6 block text-sm font-medium text-gray-900 dark:text-white">Código de responsable: </label>
             <input type="number" wire:model.live="codigo" name="codigo" id="codigo"
                 class="w-3/6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-1 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                 placeholder="Codigo Soalpro" />
@@ -24,8 +23,7 @@
         </div>
 
         <div class="flex items-center p-2">
-            <label for="preparacion" class="block mb-2 w-3/6 text-sm font-medium text-gray-900 dark:text-white">Buscar
-                preparaciones</label>
+            <label for="preparacion" class="block mb-2 w-3/6 text-sm font-medium text-gray-900 dark:text-white">Buscar preparaciones</label>
             <select id="preparacion" wire:model="preparacion"
                 class="w-3/6 bg-gray-50 border p-1 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option selected>Escoge una preparación</option>
@@ -36,31 +34,34 @@
         </div>
 
         <div class="flex items-center p-2">
-            <div class="flex items-center">
-                <input id="verificacion_corte" type="checkbox" wire:model="verificacion_corte"
-                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                <label for="verificacion_corte" class="text-sm font-medium text-gray-900 dark:text-white">verificacion corte</label>
-            </div>
-        </div>
-
-        <div class="flex items-center p-2">
-            <label for="nhorno" class="w-3/6 block text-sm font-medium text-gray-900 dark:text-white">Numero de Horno
+            <label for="numero_camara" class="w-3/6 block text-sm font-medium text-gray-900 dark:text-white">N Camara:
             </label>
-            <input type="number" wire:model="nhorno" name="nhorno" id="nhorno"
+            <input type="number" wire:model="numero_camara" name="numero_camara" id="numero_camara"
                 class="w-3/6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-1 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                placeholder="numero de horno" />
-            @error('nhorno')
+                placeholder="Numero de camara" />
+            @error('numero_camara')
                 <p class="mt-2 text-sm text-red-600 dark:text-red-500"> {{ $message }}</p>
             @enderror
         </div>
 
         <div class="flex items-center p-2">
-            <label for="tiempo_horneado" class="w-3/6 block text-sm font-medium text-gray-900 dark:text-white">Tiempo de horneado
+            <label for="hora_inicio" class="w-3/6 block text-sm font-medium text-gray-900 dark:text-white">Hora de inicio
             </label>
-            <input type="time" wire:model="tiempo_horneado" name="tiempo_horneado" id="tiempo_horneado"
+            <input type="time" wire:model="hora_inicio" name="hora_inicio" id="hora_inicio"
                 class="w-3/6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-1 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                placeholder="hora de horneado" />
-            @error('tiempo_horneado')
+                placeholder="hora de inicio" />
+            @error('hora_inicio')
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500"> {{ $message }}</p>
+            @enderror
+        </div>
+
+        <div class="flex items-center p-2">
+            <label for="humedad" class="w-3/6 block text-sm font-medium text-gray-900 dark:text-white">humedad
+            </label>
+            <input type="number" wire:model="humedad" name="humedad" id="humedad"
+                class="w-3/6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-1 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                placeholder="humedad" />
+            @error('humedad')
                 <p class="mt-2 text-sm text-red-600 dark:text-red-500"> {{ $message }}</p>
             @enderror
         </div>
@@ -77,12 +78,12 @@
         </div>
 
         <div class="flex items-center p-2">
-            <label for="temperatura_nucleo" class="w-3/6 block text-sm font-medium text-gray-900 dark:text-white">Temperatura nucleo
+            <label for="hora_salida" class="w-3/6 block text-sm font-medium text-gray-900 dark:text-white">Hora de salida
             </label>
-            <input type="number" wire:model="temperatura_nucleo" name="temperatura_nucleo" id="temperatura_nucleo"
+            <input type="time" wire:model="hora_salida" name="hora_salida" id="hora_salida"
                 class="w-3/6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-1 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                placeholder="temperatura del nucleo" />
-            @error('temperatura_nucleo')
+                placeholder="hora de salida" />
+            @error('hora_salida')
                 <p class="mt-2 text-sm text-red-600 dark:text-red-500"> {{ $message }}</p>
             @enderror
         </div>
@@ -95,7 +96,8 @@
                 placeholder="Escriba alguna anormalidad al momento de la revision."></textarea>
         </div>
         <div>
-            <label for="correccion" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Accion
+            <label for="correccion"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Accion
                 Correctiva</label>
             <textarea id="correccion" rows="4" wire:model="correccion" value="{{ old('correccion') }}"
                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
