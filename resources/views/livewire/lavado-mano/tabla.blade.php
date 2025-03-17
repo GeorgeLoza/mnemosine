@@ -1,9 +1,40 @@
 <div>
+    <!-- Filtros -->
+    <div class="flex flex-wrap gap-4 mb-4 items-end p-2 bg-gray-50 rounded-lg">
+        <div class="flex-1">
+            <label class="block text-sm font-medium text-gray-700">Fecha</label>
+            <input type="date" wire:model.live.debounce.300ms="fecha" 
+                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+        </div>
+        
+        <div class="flex-1">
+            <label class="block text-sm font-medium text-gray-700">Código</label>
+            <input type="text" wire:model.live.debounce.300ms="codigo" placeholder="Buscar por código"
+                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+        </div>
+        
+        <div class="flex-1">
+            <label class="block text-sm font-medium text-gray-700">Nombre</label>
+            <input type="text" wire:model.live.debounce.300ms="nombre" placeholder="Buscar por nombre"
+                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+        </div>
+        
+        <div class="flex-1">
+            <label class="block text-sm font-medium text-gray-700">Apellido</label>
+            <input type="text" wire:model.live.debounce.300ms="apellido" placeholder="Buscar por apellido"
+                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+        </div>
+        
+        <button wire:click="resetFilters" 
+                class="h-fit px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-md text-sm">
+            Limpiar Filtros
+        </button>
+    </div>
 
 
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg max-h-[calc(100vh-220px)]">
         <table class="w-full text-xs text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <thead class="sticky top-0 z-10 text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-2 py-1">
                         #
@@ -28,14 +59,15 @@
                             {{ $loop->iteration }}
                         </th>
                         <td class="px-2 py-1.5">
-                            {{ $lavado->tiempo }}
+                            {{ \Carbon\Carbon::parse($lavado->tiempo)->format('H:i d/m/y') }}
+                            
                         </td>
                         <td class="px-2 py-1.5">
                             {{ $lavado->user->codigo }}
                         </td>
                         <td class="px-2 py-1.5">
-                            {{ $lavado->user->name }}
                             {{ $lavado->user->lastname }}
+                            {{ $lavado->user->name }}
                         </td>
 
                     </tr>
@@ -43,7 +75,9 @@
             </tbody>
         </table>
         <!-- Paginación -->
+        <div class="sticky bottom-0 bg-white dark:bg-gray-800 pt-2">
         {{ $lavados->links() }}
+        </div>
     </div>
     <div wire:loading>
         <div

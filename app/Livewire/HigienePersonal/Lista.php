@@ -16,6 +16,9 @@ class Lista extends Component
     public $usuariosT1;
     public $usuariosT2;
     public $usuariosT3;
+    public $usuariosT4;
+    public $usuariosT5;
+    public $usuariosT6;
     public $extra = false;
     public $uniforme;
     public $higiene;
@@ -25,40 +28,62 @@ class Lista extends Component
     #[On('actualizar_tabla_lista-higiene-personal')]
     public function mount()
     {
-        $horaLimite = Carbon::now()->subHours(5);
+        // Obtener la fecha actual (sin hora)
+        $fechaHoy = Carbon::today();
 
-        $this->usuariosC = User::where('turno', 'Central')
-            ->whereDoesntHave('trabajos', function ($query) use ($horaLimite) {
-                $query->where('created_at', '>=', $horaLimite);
+        $this->usuariosC = User::where('turno', 'Administración')
+            ->whereNot('rol', 'Inhabilitado')
+            ->whereDoesntHave('trabajos', function ($query) use ($fechaHoy) {
+                $query->whereDate('created_at', $fechaHoy); // Comparar solo la fecha
             })
             ->orderBy('lastname', 'asc')
             ->get();
 
-        $this->usuariosT1 = User::where('turno', 'Turno 1')
-            ->whereDoesntHave('trabajos', function ($query) use ($horaLimite) {
-                $query->where('created_at', '>=', $horaLimite);
+        // Repetir la misma lógica para los demás turnos
+        $this->usuariosT1 = User::where('turno', 'Embolsado')
+            ->whereNot('rol', 'Inhabilitado')
+            ->whereDoesntHave('trabajos', function ($query) use ($fechaHoy) {
+                $query->whereDate('created_at', $fechaHoy);
             })
             ->orderBy('lastname', 'asc')
             ->get();
 
-        $this->usuariosT2 = User::where('turno', 'Turno 2')
-            ->whereDoesntHave('trabajos', function ($query) use ($horaLimite) {
-                $query->where('created_at', '>=', $horaLimite);
+        $this->usuariosT2 = User::where('turno', 'Hornos')
+            ->whereNot('rol', 'Inhabilitado')
+            ->whereDoesntHave('trabajos', function ($query) use ($fechaHoy) {
+                $query->whereDate('created_at', $fechaHoy);
             })
             ->orderBy('lastname', 'asc')
             ->get();
 
-        $this->usuariosT3 = User::where('turno', 'Turno 3')
-            ->whereDoesntHave('trabajos', function ($query) use ($horaLimite) {
-                $query->where('created_at', '>=', $horaLimite);
+        $this->usuariosT3 = User::where('turno', 'Producción')
+            ->whereNot('rol', 'Inhabilitado')
+            ->whereDoesntHave('trabajos', function ($query) use ($fechaHoy) {
+                $query->whereDate('created_at', $fechaHoy);
             })
             ->orderBy('lastname', 'asc')
             ->get();
-
-
-
-
-
+        $this->usuariosT4 = User::where('turno', 'Burguer King')
+            ->whereNot('rol', 'Inhabilitado')
+            ->whereDoesntHave('trabajos', function ($query) use ($fechaHoy) {
+                $query->whereDate('created_at', $fechaHoy);
+            })
+            ->orderBy('lastname', 'asc')
+            ->get();
+        $this->usuariosT5 = User::where('turno', 'Repostería Fina')
+            ->whereNot('rol', 'Inhabilitado')
+            ->whereDoesntHave('trabajos', function ($query) use ($fechaHoy) {
+                $query->whereDate('created_at', $fechaHoy);
+            })
+            ->orderBy('lastname', 'asc')
+            ->get();
+        $this->usuariosT6 = User::where('turno', 'Almacenes')
+            ->whereNot('rol', 'Inhabilitado')
+            ->whereDoesntHave('trabajos', function ($query) use ($fechaHoy) {
+                $query->whereDate('created_at', $fechaHoy);
+            })
+            ->orderBy('lastname', 'asc')
+            ->get();
     }
 
     public function render()

@@ -14,7 +14,7 @@ class Fermentacion extends Model
         'tiempo',
         'preparacion',
         'orp_id',
-        'numero',
+        'ncamara',
         'hora_inicio',
         'humedad',
         'temperatura',

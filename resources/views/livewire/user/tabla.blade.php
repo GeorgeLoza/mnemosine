@@ -1,4 +1,32 @@
 <div>
+
+    <div class="flex flex-wrap gap-4 mb-4 items-end p-4 bg-gray-50 rounded-lg">
+        
+        <div class="flex-1">
+            <label class="block text-sm font-medium text-gray-700">Código</label>
+            <input type="text" wire:model.live.debounce.300ms="codigo" placeholder="Buscar por código"
+                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+        </div>
+        
+        <div class="flex-1">
+            <label class="block text-sm font-medium text-gray-700">Nombre</label>
+            <input type="text" wire:model.live.debounce.300ms="nombre" placeholder="Buscar por nombre"
+                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+        </div>
+        
+        <div class="flex-1">
+            <label class="block text-sm font-medium text-gray-700">Apellido</label>
+            <input type="text" wire:model.live.debounce.300ms="apellido" placeholder="Buscar por apellido"
+                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+        </div>
+        
+        <button wire:click="resetFilters" 
+                class="h-fit px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-md text-sm">
+            Limpiar Filtros
+        </button>
+    </div>
+
+
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-xs text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -41,18 +69,7 @@
                             {{ $usuario->rol }}
                         </td>
                         <td class="px-2 py-1.5">
-                            @if($usuario->turno == 'Central')
-                            Administración
-                            @endif
-                            @if($usuario->turno == 'Turno 1')
-                            Embolsado
-                            @endif
-                            @if($usuario->turno == 'Turno 2')
-                            Hornos
-                            @endif
-                            @if($usuario->turno == 'Turno 3')
-                            Producción
-                            @endif
+                            {{$usuario->turno}}
                         </td>
                         <td class="px-2 py-1.5">
                             <div class=" flex gap-2">

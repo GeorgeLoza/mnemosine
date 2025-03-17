@@ -1,102 +1,153 @@
 <div>
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table class="w-full text-xs text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                <tr>
-                    <th scope="col" class="px-2 py-1">
-                        #
-                    </th>
-                    <th scope="col" class="px-2 py-1">
-                        codigo
-                    </th>
-                    <th scope="col" class="px-2 py-1">
-                        tipo
-                    </th>
-                    <th scope="col" class="px-2 py-1">
-                        version
-                    </th>
-                    <th scope="col" class="px-2 py-1">
-                        estado
-                    </th>
-                    <th scope="col" class="px-2 py-1">
-                        fecha creacion
-                    </th>
-                    <th scope="col" class="px-2 py-1">
-                        creador
-                    </th>
-                    <th scope="col" class="px-2 py-1">
-                        fecha revision
-                    </th>
-                    <th scope="col" class="px-2 py-1">
-                        revision
-                    </th>
-                    <th scope="col" class="px-2 py-1">
-                        fecha aprobacion
-                    </th>
-                    <th scope="col" class="px-2 py-1">
-                        aprobador
-                    </th>
-                    <th scope="col" class="px-2 py-1">
-                        acciones
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($documentos as $documento)
-                    <tr
-                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        <th scope="row"
-                            class="px-2 py-1.5 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{ $loop->iteration }}
-                        </th>
-                        <td class="px-2 py-1.5">
-                            {{ $documento->codigo }}
-                        </td>
-                        <td class="px-2 py-1.5">
-                            {{ $documento->tipo }}
-                        </td>
-                        <td class="px-2 py-1.5">
-                            {{ $documento->version }}
-                        </td>
-                        <td class="px-2 py-1.5">
-                            {{ $documento->estado }}
-                        </td>
-                        <td class="px-2 py-1.5">
-                            <div class=" flex gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-                                    class="w-4 h-4 fill-green-600"
-                                    wire:click="$dispatch('openModal', {component: 'documentacion.editar', arguments: {id: {{ $documento->id }}}})">
-                                    <path
-                                        d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152L0 424c0 48.6 39.4 88 88 88l272 0c48.6 0 88-39.4 88-88l0-112c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 112c0 22.1-17.9 40-40 40L88 464c-22.1 0-40-17.9-40-40l0-272c0-22.1 17.9-40 40-40l112 0c13.3 0 24-10.7 24-24s-10.7-24-24-24L88 64z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
-                                    class="w-4 h-4 fill-red-600" wire:click="delete({{ $documento->id }})"
-                                    wire:confirm="Esta seguro que desea borrar al usuario?">
-                                    <path
-                                        d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0L284.2 0c12.1 0 23.2 6.8 28.6 17.7L320 32l96 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 96C14.3 96 0 81.7 0 64S14.3 32 32 32l96 0 7.2-14.3zM32 128l384 0 0 320c0 35.3-28.7 64-64 64L96 512c-35.3 0-64-28.7-64-64l0-320zm96 64c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16z" />
-                                </svg>
-                            </div>
-                        </td>
-                    </tr>
+    <!-- Filtros -->
+    <div class="mb-4 flex gap-4 items-end">
+        <div class="flex-1">
+            <label class="block text-sm font-medium mb-1">Área</label>
+            <select wire:model.live="selectedArea" class="w-full p-2 border rounded">
+                <option value="">Todas las áreas</option>
+                @foreach ($areas as $area)
+                    <option value="{{ $area }}">{{ $area }}</option>
                 @endforeach
-            </tbody>
-        </table>
-    </div>
-    <div wire:loading>
-        <div
-            class="fixed inset-0 flex items-center justify-center bg-gray-50 bg-opacity-75 dark:bg-gray-800 dark:bg-opacity-75 z-50">
-            <div role="status">
-                <svg aria-hidden="true" class="w-16 h-16 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
-                    viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-                        fill="currentColor" />
-                    <path
-                        d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-                        fill="currentFill" />
-                </svg>
-                <span class="sr-only">Loading...</span>
-            </div>
+            </select>
         </div>
+
+        <div class="flex-1">
+            <label class="block text-sm font-medium mb-1">Procedimiento</label>
+            <select wire:model.live="selectedProcedure" class="w-full p-2 border rounded">
+                <option value="">Todos los procedimientos</option>
+                @foreach ($procedures as $procedure)
+                    <option value="{{ $procedure->id }}">
+                        {{ $procedure->codigo }} - {{ $procedure->titulo }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="flex-1">
+            <label class="block text-sm font-medium mb-1">Tipo Documento</label>
+            <select wire:model.live="selectedTipo" class="w-full p-2 border rounded">
+                <option value="">Todos los Tipos</option>
+                @foreach ($tipos as $tipo)
+                    <option value="{{ $tipo }}">{{ $tipo }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <button wire:click="resetFilters" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded">
+            Limpiar filtros
+        </button>
+    </div>
+
+    <!-- Barra de búsqueda -->
+    <div class="mb-4">
+        <input type="text" wire:model.debounce.300ms="search" placeholder="Buscar..."
+            class="p-2 border rounded w-full">
+    </div>
+    <table class="w-full text-xs text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="sticky top-0 z-10 text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th></th>
+                <th>
+                    #
+                </th>
+                <th wire:click.prevent="sortBy('codigo')" class="px-2 py-1 cursor-pointer">
+                    Código
+                </th>
+                <th wire:click.prevent="sortBy('titulo')" class="px-2 py-1 cursor-pointer">
+                    Título
+                </th>
+                <th class="px-2 py-1">Tipo</th>
+                <th class="px-2 py-1">Versión</th>
+                <th class="px-2 py-1">Estado</th>
+                <th class="px-2 py-1">Acciones</th>
+            </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+            @foreach ($documentos as $doc)
+                <tr
+                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <th>
+                        <a href="{{ route('documentacion.ver', ['id' => $doc->id]) }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
+                                class="h-5 w-5 fill-green-500">
+                                <path
+                                    d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z" />
+                            </svg>
+                        </a>
+                    </th>
+                    <th scope="row" class="px-2 py-1.5 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {{ $loop->iteration }}
+                    </th>
+                    <td class="px-2 py-1.5">{{ $doc->codigo }}</td>
+                    <td class="px-2 py-1.5">{{ $doc->titulo }}</td>
+                    <td class="px-2 py-1.5">{{ $doc->tipo }}</td>
+                    <td class="px-2 py-1.5">{{ $doc->version }}</td>
+                    <td class="px-2 py-1.5">
+                        @php
+                            $colores = [
+                                'Borrador' => 'bg-gray-200 text-gray-800',
+                                'Por Revisar' => 'bg-yellow-200 text-yellow-800',
+                                'Por Aprobar' => 'bg-blue-200 text-blue-800',
+                                'Vigente' => 'bg-green-200 text-green-800',
+                                'Obsoleto' => 'bg-red-200 text-red-800',
+                            ];
+                            $colorClase = $colores[$doc->estado] ?? 'bg-gray-100 text-gray-600';
+                        @endphp
+                        <span class="px-2 py-1 text-sm rounded-full {{ $colorClase }}">
+                            {{ $doc->estado }}
+                        </span>
+                    </td>
+                    
+                    <td class="px-2 py-1.5 flex gap-2">
+                        <div
+                            wire:click="$dispatch('openModal', {component: 'documentacion.editar', arguments: {id: {{ $doc->id }}}})">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                                class="h-5 w-5 fill-green-500">
+                                <path
+                                    d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z" />
+                            </svg>
+                        </div>
+                        @if ($doc->pdf_path)
+                        
+                            <a href="{{ asset('storage/' . $doc->pdf_path) }}"
+                                download="{{ pathinfo($doc->pdf_path, PATHINFO_BASENAME) }}" type="application/pdf"
+                                class="text-green-500 hover:text-green-700 ml-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                                    class="h-5 w-5 fill-red-500">
+                                    <path
+                                        d="M0 64C0 28.7 28.7 0 64 0L224 0l0 128c0 17.7 14.3 32 32 32l128 0 0 144-208 0c-35.3 0-64 28.7-64 64l0 144-48 0c-35.3 0-64-28.7-64-64L0 64zm384 64l-128 0L256 0 384 128zM176 352l32 0c30.9 0 56 25.1 56 56s-25.1 56-56 56l-16 0 0 32c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-48 0-80c0-8.8 7.2-16 16-16zm32 80c13.3 0 24-10.7 24-24s-10.7-24-24-24l-16 0 0 48 16 0zm96-80l32 0c26.5 0 48 21.5 48 48l0 64c0 26.5-21.5 48-48 48l-32 0c-8.8 0-16-7.2-16-16l0-128c0-8.8 7.2-16 16-16zm32 128c8.8 0 16-7.2 16-16l0-64c0-8.8-7.2-16-16-16l-16 0 0 96 16 0zm80-112c0-8.8 7.2-16 16-16l48 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 32 32 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 48c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-64 0-64z" />
+                                </svg>
+                            </a>
+                        @endif
+
+                        @if ($doc->word_path)
+                            <a href="{{ asset('storage/' . $doc->word_path) }}"
+                                download="{{ pathinfo($doc->word_path, PATHINFO_BASENAME) }}"
+                                class="text-green-500 hover:text-green-700 ml-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"
+                                    class="h-5 w-5 fill-blue-500">
+                                    <path
+                                        d="M64 0C28.7 0 0 28.7 0 64L0 448c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-288-128 0c-17.7 0-32-14.3-32-32L224 0 64 0zM256 0l0 128 128 0L256 0zM111 257.1l26.8 89.2 31.6-90.3c3.4-9.6 12.5-16.1 22.7-16.1s19.3 6.4 22.7 16.1l31.6 90.3L273 257.1c3.8-12.7 17.2-19.9 29.9-16.1s19.9 17.2 16.1 29.9l-48 160c-3 10-12 16.9-22.4 17.1s-19.8-6.2-23.2-16.1L192 336.6l-33.3 95.3c-3.4 9.8-12.8 16.3-23.2 16.1s-19.5-7.1-22.4-17.1l-48-160c-3.8-12.7 3.4-26.1 16.1-29.9s26.1 3.4 29.9 16.1z" />
+                                </svg>
+                            </a>
+                        @endif
+
+
+                        <button wire:click="delete({{ $doc->id }})"
+                            onclick="return confirm('¿Seguro que deseas eliminar este documento?')"
+                            class="text-red-500 hover:text-red-700 ml-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="h-5 w-5 fill-red-500">
+                                <path
+                                    d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0L284.2 0c12.1 0 23.2 6.8 28.6 17.7L320 32l96 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 96C14.3 96 0 81.7 0 64S14.3 32 32 32l96 0 7.2-14.3zM32 128l384 0 0 320c0 35.3-28.7 64-64 64L96 512c-35.3 0-64-28.7-64-64l0-320zm96 64c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16z" />
+                            </svg>
+                        </button>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    <div class="mt-4">
+        {{ $documentos->links() }}
     </div>
 </div>

@@ -5,7 +5,7 @@
 
 @section('contenido')
     <div class="md:flex justify-center">
-        @livewire('VerOrdLipDes.crear')
+        @livewire('VerificacionOrdenLimpieza.crear')
     </div>
 @endsection
 

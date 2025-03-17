@@ -1,7 +1,7 @@
 <div class=" p-2 bg-white border border-gray-200 rounded-lg shadow sm:p-4 md:p-6 dark:bg-gray-800 dark:border-gray-700">
     <form wire:submit.prevent="submit" novalidate>
         @csrf
-        <h5 class="text-xl font-medium text-gray-900 dark:text-white">Preparación</h5>
+        <h5 class="text-xl font-medium text-gray-900 dark:text-white">Amasado</h5>
         <div class="flex items-center p-2">
             <label for="codigo" class="w-3/6 block text-sm font-medium text-gray-900 dark:text-white">Código de responsable: </label>
             <input type="number" wire:model.live="codigo" name="codigo" id="codigo"
@@ -32,6 +32,7 @@
                 @endforeach
             </select>
         </div>
+        
 
         <div class="flex items-center p-2">
             <label for="tiempo_amasado1" class="w-3/6 block text-sm font-medium text-gray-900 dark:text-white">Tiempo de amasado 1 CTTE:

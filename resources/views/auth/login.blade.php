@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="manifest" href="/manifest.json">
-    <link rel="stylesheet" href="{{ asset('build/assets/app-DdBxNlkz.css') }}">
-    <script src="{{ asset('build/assets/app-BJi2HfH9.js') }}" defer></script>
+    <link rel="stylesheet" href="{{ asset('build/assets/app-BJ82HC5b.css') }}">
+    <script src="{{ asset('build/assets/app-BJi2HfH9.js ') }}" defer></script>
 
     <script src="{{ asset('js/flowbite.js') }}"></script>
 

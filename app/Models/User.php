@@ -50,6 +50,20 @@ class User extends Authenticatable
     {
         return $this->hasMany(VerificacionOrdLipDes::class);
     }
+    public function trabajadorCuracion()
+    {
+        return $this->hasMany(Curacion::class, 'trabajador');
+    }
+
+    public function trabajosComoResponsableInicio()
+    {
+        return $this->hasMany(Curacion::class, 'responsable_inicio');
+    }
+
+    public function trabajosComoResponsableFin()
+    {
+        return $this->hasMany(Curacion::class, 'responsable_fin');
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

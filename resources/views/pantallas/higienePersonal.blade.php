@@ -1,22 +1,29 @@
 @extends('layout.app')
 
 @section('titulo')
-    <div></div>
+    <div class="hidden md:block text-blue-500 font-light text-sm">PLP-PRO-601-REG-01</div>
     <h1>Higiene Personal</h1>
-    <!--Boton Crear -->
-    <a href="{{route("mobile.higienePersonal")}}">
-        <button class="px-2 py-1 bg-green-500 rounded-lg text-xs text-white uppercase">
-            nuevo</button>
-    </a>
-
-
+    <div class="flex gap-1">
+        <div class="hidden md:flex gap-1">
+            <a href="{{ route('Reporte2HigienePersonal.index') }}">
+                <button class="px-2 py-1 bg-blue-500 rounded-lg text-xs text-white uppercase">
+                    Reporte</button>
+            </a>
+            <a href="{{ route('ReporteHigienePersonal.index') }}">
+                <button class="px-2 py-1 bg-blue-500 rounded-lg text-xs text-white uppercase">
+                    Seguimiento</button>
+            </a>
+        </div>
+        <!--Boton Crear -->
+        <a href="{{ route('mobile.higienePersonal') }}">
+            <button class="px-2 py-1 bg-green-500 rounded-lg text-xs text-white uppercase">
+                nuevo</button>
+        </a>
+    </div>
 @endsection
 
 @section('contenido')
     @livewire('higienePersonal.tabla')
-    <br>
-    <p>REPORTE</p>
-    @livewire('higienePersonal.reporte')
 @endsection
 
 <div wire:loading>

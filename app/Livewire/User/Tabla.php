@@ -10,11 +10,33 @@ use Masmerise\Toaster\Toaster;
 class Tabla extends Component
 {
 
+    public $codigo;
+    public $nombre;
+    public $apellido;
+
     #[On('tablaUsuarios')]
     public function render()
     {
+        $query = User::
+            orderBy('id', 'desc');
+
+        // Filtros
+        if ($this->codigo) {
+            $query->where('codigo', 'like', '%' . $this->codigo . '%');
+        }
+        
+        if ($this->nombre) {
+            $query->where('name', 'like', '%' . $this->nombre . '%');
+        }
+        
+        if ($this->apellido) {
+            $query->where('lastname', 'like', '%' . $this->apellido . '%');
+        }
+
+        $usuarios = $query->paginate(50);
+
         return view('livewire.user.tabla', [
-            'usuarios' => User::orderBy('id', 'desc')->paginate(10)
+            'usuarios' => $usuarios
         ]);
     }
 
@@ -35,12 +57,14 @@ class Tabla extends Component
             // Actualizar la tabla de usuarios en la interfaz y mostrar el mensaje de éxito
             $this->dispatch('tablaUsuarios');
             Toaster::success('Usuario eliminado exitosamente!');
-
         } catch (\Throwable $th) {
             // Mostrar mensaje de error en caso de falla
             Toaster::error('Fallo al momento de eliminar el usuario!');
         }
     }
-
+    public function resetFilters()
+    {
+        $this->reset(['fecha', 'codigo', 'nombre', 'apellido']);
+        $this->resetPage();
+    }
 }
-

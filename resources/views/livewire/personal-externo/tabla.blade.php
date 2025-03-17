@@ -51,17 +51,17 @@
                             class="px-2 py-1.5 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {{ $loop->iteration }}
                         </th>
-                        <td class="px-2 py-1.5">
-                            {{ $externo->tiempo }}
+                        <td class="px-2 py-1.5" nowrap>
+                            {{ \Carbon\Carbon::parse($externo->tiempo)->format('H:i d/m/y') }}
                         </td>
-                        <td class="px-2 py-1.5">
+                        <td class="px-2 py-1.5" nowrap>
                             {{ $externo->user->name }}
                             {{ $externo->user->lastname }}
                         </td>
                         <td class="px-2 py-1.5">
                             {{ $externo->visita }}
                         </td>
-                        <td class="px-2 py-1.5">
+                        <td class="px-2 py-1.5" nowrap>
                             {{ $externo->areaInstitucion }}
                         </td>
                         <td class="px-2 py-1.5">

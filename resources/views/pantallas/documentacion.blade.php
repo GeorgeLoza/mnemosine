@@ -1,8 +1,8 @@
 @extends('layout.app')
 
 @section('titulo')
-    <div></div>
-    <h1>Documentación</h1>
+    <div>SGC - PRO - 02 - REG - 01</div>
+    <h1>Listado Maestro de Documentos</h1>
     <!--Boton Crear -->
     <!--Boton Crear -->
     <button class="px-2 py-1 bg-green-500 rounded-lg text-xs text-white uppercase"

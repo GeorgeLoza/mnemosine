@@ -7,7 +7,7 @@
                 <div class="w-1/3">
                     <label for="codigo"
                         class="block mb-1 text-sm md:text-lg font-medium text-gray-900 dark:text-white">Código</label>
-                    <input type="phone" wire:model.live="codigo" name="codigo" id="codigo"
+                    <input type="number" wire:model.live="codigo" name="codigo" id="codigo"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm md:text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                         placeholder="Codigo Soalpro" />
                     @error('codigo')

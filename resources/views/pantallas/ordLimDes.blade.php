@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('titulo')
-    <div></div>
+<div class="text-blue-500 font-light text-sm">PLP-PRO-602-REG-01</div>
     <h1>Configuración de Orden, Limpieza y desinfeccion</h1>
     <!--Boton Crear -->
     <div></div>

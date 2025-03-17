@@ -15,7 +15,7 @@ class Crear extends ModalComponent
 {
     public $orp;
     public $preparaciones;
-    public $tiempo_amasado1;
+    public $tiempo_amasado1=20;
     public $tiempo_amasado2;
     public $temperatura;
     public $observaciones;
@@ -32,7 +32,7 @@ class Crear extends ModalComponent
         'preparacion' => 'required',
         'tiempo_amasado1' => 'required',
         'tiempo_amasado2' => 'required',
-        'temperatura' => 'required',
+        'temperatura' => 'required|numeric|min:28|max:32',
     ];
 
 
@@ -59,7 +59,7 @@ class Crear extends ModalComponent
         $entero = floor($lote);
         $decimal = $lote - $entero;
 
-        // Generar las opciones basadas en la parte entera
+        // Generar todas las opciones basadas en el lote
         for ($i = 1; $i <= $entero; $i++) {
             $opciones[] = $i;
         }
@@ -69,7 +69,20 @@ class Crear extends ModalComponent
             $opciones[] = round($decimal, 2);
         }
 
-        return $opciones;
+        // Obtener las preparaciones usadas en la tabla Corte para esta ORP
+        $preparacionesUsadas = Amasado::where('orp_id', $this->orp)
+            ->pluck('preparacion') // Extrae solo las preparaciones
+            ->map(function ($valor) {
+                return (float) $valor; // Convertir a float para comparación
+            })
+            ->toArray();
+
+        // Filtrar las opciones para excluir las usadas
+        $opcionesFiltradas = array_filter($opciones, function ($opcion) use ($preparacionesUsadas) {
+            return !in_array((float) $opcion, $preparacionesUsadas); // Comparar como float
+        });
+
+        return $opcionesFiltradas;
     }
 
 
@@ -106,7 +119,6 @@ class Crear extends ModalComponent
                 'tiempo_amasado1',
                 'tiempo_amasado2',
                 'temperatura',
-                'responsable',
                 'observaciones',
                 'correccion',
             ]);

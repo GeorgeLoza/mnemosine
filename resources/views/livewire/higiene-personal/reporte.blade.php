@@ -11,9 +11,9 @@
         </thead>
         <tbody>
             @foreach ($users as $userData)
-                <tr>
+                <tr class="text-center">
                     <td class="px-4 py-1 border-b border-gray-300">{{ $userData['user']->codigo }} </td>
-                    <td class="px-4 py-1 border-b border-gray-300">{{ $userData['user']->name }} {{ $userData['user']->lastname }} </td>
+                    <td class="px-4 py-1 border-b border-gray-300"> {{ $userData['user']->lastname }} {{ $userData['user']->name }}</td>
                     @foreach ($dates as $date)
                         <td class="px-4 py-1 text-center border-b
                         @if ( $userData['data'][$date]>=1)

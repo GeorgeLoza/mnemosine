@@ -55,6 +55,7 @@
                             <option value="jef">Jefatura</option>
                             <option value="supervisor">Supervisor</option>
                             <option value="personal">Personal</option>
+                            <option value="Inhabilitado">Inhabilitado</option>
                         </select>
                         @error('rol')
                             <p class="mt-2 text-sm text-red-600 dark:text-red-500"> {{ $message }}</p>
@@ -67,10 +68,14 @@
                         <select id="turno" wire:model="turno" value="{{ old('turno') }}"
                             class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option selected>Escoge el área de trabajo</option>
-                            <option value="Central">Administracion</option>
-                            <option value="Turno 1">Embolsado</option>
-                            <option value="Turno 2">Horno</option>
-                            <option value="Turno 3">Produccion</option>
+                            <option value="Administración">Administración</option>
+                            <option value="Embolsado">Embolsado</option>
+                            <option value="Hornos">Hornos</option>
+                            <option value="Producción">Producción</option>
+                            <option value="Producción">Producción</option>
+                            <option value="Burguer King">Burguer King</option>
+                            <option value="Repostería Fina">Repostería Fina</option>
+                            <option value="Almacenes">Almacenes</option>
                         </select>
                         @error('turno')
                             <p class="mt-2 text-sm text-red-600 dark:text-red-500"> {{ $message }}</p>

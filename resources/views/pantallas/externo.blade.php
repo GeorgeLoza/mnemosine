@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('titulo')
-    <div></div>
+<div class="text-blue-500 font-light text-sm">PLP-PRO-601-REG-03</div>
     <h1>Personal Externo</h1>
     <!--Boton Crear -->
     <!--Boton Crear -->

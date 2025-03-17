@@ -14,7 +14,7 @@ class Crear extends ModalComponent
 {
     public $orp;
     public $preparaciones;
-    public $verificacion_horno;
+    public $verificacion_corte;
     public $nhorno;
     public $tiempo_horneado;
     public $temperatura_nucleo;
@@ -61,7 +61,7 @@ class Crear extends ModalComponent
         $entero = floor($lote);
         $decimal = $lote - $entero;
 
-        // Generar las opciones basadas en la parte entera
+        // Generar todas las opciones basadas en el lote
         for ($i = 1; $i <= $entero; $i++) {
             $opciones[] = $i;
         }
@@ -71,7 +71,20 @@ class Crear extends ModalComponent
             $opciones[] = round($decimal, 2);
         }
 
-        return $opciones;
+        // Obtener las preparaciones usadas en la tabla Corte para esta ORP
+        $preparacionesUsadas = Horneado::where('orp_id', $this->orp)
+            ->pluck('preparacion') // Extrae solo las preparaciones
+            ->map(function ($valor) {
+                return (float) $valor; // Convertir a float para comparación
+            })
+            ->toArray();
+
+        // Filtrar las opciones para excluir las usadas
+        $opcionesFiltradas = array_filter($opciones, function ($opcion) use ($preparacionesUsadas) {
+            return !in_array((float) $opcion, $preparacionesUsadas); // Comparar como float
+        });
+
+        return $opcionesFiltradas;
     }
 
 
@@ -89,7 +102,7 @@ class Crear extends ModalComponent
                 'tiempo' => Carbon::now(),
                 'preparacion' => $this->preparacion,
                 'orp_id' => $this->orp,
-                'verificacion_horno' => $this->verificacion_horno,
+                'verificacion_corte' => $this->verificacion_corte,
                 'nhorno' => $this->nhorno,
                 'tiempo_horneado' => $this->tiempo_horneado,
                 'temperatura_nucleo' => $this->temperatura_nucleo,
@@ -105,13 +118,11 @@ class Crear extends ModalComponent
 
             // Reset fields after submission
             $this->reset([
-                'verificacion_horno',
+                'verificacion_corte',
                 'nhorno',
                 'tiempo_horneado',
-                'humedad',
                 'temperatura_nucleo',
                 'temperatura',
-                'responsable',
                 'observaciones',
                 'correccion',
             ]);

@@ -1,7 +1,7 @@
 <div class=" p-2 bg-white border border-gray-200 rounded-lg shadow sm:p-4 md:p-6 dark:bg-gray-800 dark:border-gray-700">
     <form wire:submit.prevent="submit" novalidate>
         @csrf
-        <h5 class="text-xl font-medium text-gray-900 dark:text-white">fermentacion</h5>
+        <h5 class="text-xl font-medium text-gray-900 dark:text-white">Fermentacion</h5>
         <div class="flex items-center p-2">
             <label for="codigo" class="w-3/6 block text-sm font-medium text-gray-900 dark:text-white">Código de responsable: </label>
             <input type="number" wire:model.live="codigo" name="codigo" id="codigo"
@@ -34,12 +34,12 @@
         </div>
 
         <div class="flex items-center p-2">
-            <label for="numero_camara" class="w-3/6 block text-sm font-medium text-gray-900 dark:text-white">N Camara:
+            <label for="ncamara" class="w-3/6 block text-sm font-medium text-gray-900 dark:text-white">N Camara:
             </label>
-            <input type="number" wire:model="numero_camara" name="numero_camara" id="numero_camara"
+            <input type="number" wire:model="ncamara" name="ncamara" id="ncamara"
                 class="w-3/6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-1 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                 placeholder="Numero de camara" />
-            @error('numero_camara')
+            @error('ncamara')
                 <p class="mt-2 text-sm text-red-600 dark:text-red-500"> {{ $message }}</p>
             @enderror
         </div>

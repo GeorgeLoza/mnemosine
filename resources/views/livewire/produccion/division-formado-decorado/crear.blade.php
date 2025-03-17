@@ -1,7 +1,7 @@
 <div class=" p-2 bg-white border border-gray-200 rounded-lg shadow sm:p-4 md:p-6 dark:bg-gray-800 dark:border-gray-700">
     <form wire:submit.prevent="submit" novalidate>
         @csrf
-        <h5 class="text-xl font-medium text-gray-900 dark:text-white">Preparación</h5>
+        <h5 class="text-xl font-medium text-gray-900 dark:text-white">Division Formado Decorado</h5>
         <label for="preparacion" class="block mb-2 w-3/6 text-sm font-medium text-gray-900 dark:text-white">Responsable de
             pintado</label>
         <div class="flex items-center gap-2">

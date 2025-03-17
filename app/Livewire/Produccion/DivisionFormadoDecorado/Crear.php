@@ -47,14 +47,14 @@ class Crear extends ModalComponent
 
     protected $rules = [
         'preparacion' => 'required',
-        'peso_crudo1' => 'required',
-        'peso_crudo2' => 'required',
-        'peso_crudo3' => 'required',
-        'peso_crudo4' => 'required',
-        'peso_ajonjoli1' => 'required',
-        'peso_ajonjoli2' => 'required',
-        'peso_ajonjoli3' => 'required',
-        'peso_ajonjoli4' => 'required',
+        'peso_crudo1' => 'required|numeric|min:28|max:32',
+        'peso_crudo2' => 'required|numeric|min:28|max:32',
+        'peso_crudo3' => 'required|numeric|min:28|max:32',
+        'peso_crudo4' => 'required|numeric|min:28|max:32',
+        'peso_ajonjoli1' => 'required|numeric',
+        'peso_ajonjoli2' => 'required|numeric',
+        'peso_ajonjoli3' => 'required|numeric',
+        'peso_ajonjoli4' => 'required|numeric',
     ];
 
     public function mount()
@@ -94,7 +94,7 @@ class Crear extends ModalComponent
         $entero = floor($lote);
         $decimal = $lote - $entero;
 
-        // Generar las opciones basadas en la parte entera
+        // Generar todas las opciones basadas en el lote
         for ($i = 1; $i <= $entero; $i++) {
             $opciones[] = $i;
         }
@@ -104,7 +104,20 @@ class Crear extends ModalComponent
             $opciones[] = round($decimal, 2);
         }
 
-        return $opciones;
+        // Obtener las preparaciones usadas en la tabla Corte para esta ORP
+        $preparacionesUsadas = DivisionFormadoDecorado::where('orp_id', $this->orp)
+            ->pluck('preparacion') // Extrae solo las preparaciones
+            ->map(function ($valor) {
+                return (float) $valor; // Convertir a float para comparación
+            })
+            ->toArray();
+
+        // Filtrar las opciones para excluir las usadas
+        $opcionesFiltradas = array_filter($opciones, function ($opcion) use ($preparacionesUsadas) {
+            return !in_array((float) $opcion, $preparacionesUsadas); // Comparar como float
+        });
+
+        return $opcionesFiltradas;
     }
 
     public function render()

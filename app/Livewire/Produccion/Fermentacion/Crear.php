@@ -14,7 +14,7 @@ class Crear extends ModalComponent
 {
     public $orp;
     public $preparaciones;
-    public $numero_camara;
+    public $ncamara;
     public $hora_inicio;
     public $humedad;
     public $temperatura;
@@ -31,7 +31,7 @@ class Crear extends ModalComponent
     
     protected $rules = [
         'preparacion' => 'required',
-        'numero_camara' => 'required',
+        'ncamara' => 'required',
         'hora_inicio' => 'required',
         'humedad' => 'required',
         'temperatura' => 'required',
@@ -62,7 +62,7 @@ class Crear extends ModalComponent
         $entero = floor($lote);
         $decimal = $lote - $entero;
 
-        // Generar las opciones basadas en la parte entera
+        // Generar todas las opciones basadas en el lote
         for ($i = 1; $i <= $entero; $i++) {
             $opciones[] = $i;
         }
@@ -72,7 +72,20 @@ class Crear extends ModalComponent
             $opciones[] = round($decimal, 2);
         }
 
-        return $opciones;
+        // Obtener las preparaciones usadas en la tabla Corte para esta ORP
+        $preparacionesUsadas = Fermentacion::where('orp_id', $this->orp)
+            ->pluck('preparacion') // Extrae solo las preparaciones
+            ->map(function ($valor) {
+                return (float) $valor; // Convertir a float para comparación
+            })
+            ->toArray();
+
+        // Filtrar las opciones para excluir las usadas
+        $opcionesFiltradas = array_filter($opciones, function ($opcion) use ($preparacionesUsadas) {
+            return !in_array((float) $opcion, $preparacionesUsadas); // Comparar como float
+        });
+
+        return $opcionesFiltradas;
     }
 
 
@@ -90,7 +103,7 @@ class Crear extends ModalComponent
                 'tiempo' => Carbon::now(),
                 'preparacion' => $this->preparacion,
                 'orp_id' => $this->orp,
-                'numero_camara' => $this->numero_camara,
+                'ncamara' => $this->ncamara,
                 'hora_inicio' => $this->hora_inicio,
                 'humedad' => $this->humedad,
                 'temperatura' => $this->temperatura,
@@ -107,16 +120,16 @@ class Crear extends ModalComponent
             // Reset fields after submission
             $this->reset([
                 'preparacion',
-                'numero_camara',
+                'ncamara',
                 'hora_inicio',
                 'humedad',
                 'temperatura',
                 'hora_salida',
-                'responsable',
                 'observaciones',
                 'correccion',
             ]);
         } catch (\Throwable $th) {
+            
             Toaster::error('Fallo al momento de registrar: ' . $th->getMessage());
         }
     }
