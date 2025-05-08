@@ -64,6 +64,21 @@ class User extends Authenticatable
     {
         return $this->hasMany(Curacion::class, 'responsable_fin');
     }
+    public function herramientasIngresadas()
+    {
+        return $this->hasMany(VerificacionHerramienta::class, 'user_ingreso');
+    }
+
+    public function herramientasSalidas()
+    {
+        return $this->hasMany(VerificacionHerramienta::class, 'user_salida');
+    }
+
+    // En App\Models\User
+    public function verificacionesOrdenLimpieza()
+    {
+        return $this->hasMany(VerificacionOrdenLimpieza::class);
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

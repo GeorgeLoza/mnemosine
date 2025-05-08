@@ -5,11 +5,13 @@
     <h1>Curaciones leves / dotacion de esparadrapos</h1>
     <!--Boton Crear -->
     <div>
+        @if (auth()->user()->rol === 'Admi' || auth()->user()->rol === 'Supervisor')
         <div class="hidden md:flex gap-1">
             <div><button class="px-2 py-1 bg-green-500 rounded-lg text-xs text-white uppercase"
                 onclick="Livewire.dispatch('openModal', { component: 'curaciones.crear' })">
                 nuevo</button></div>
         </div>
+        @endif
     </div>
 @endsection
 @section('contenido')

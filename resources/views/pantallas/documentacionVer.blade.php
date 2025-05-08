@@ -1,14 +1,21 @@
 @extends('layout.app')
 
 @section('titulo')
-<div>SGC - PRO - 02 - REG - 01</div>
+    <div>SGC - PRO - 02 - REG - 01</div>
     <h1>Listado Maestro de Documentos</h1>
     <div></div>
 @endsection
 
 @section('contenido')
-    @livewire('documentacion.ver', ['id' => $documentacion->id])
-    @livewire('documentacion.pdf-viewer', ['id' => $documentacion->id ?? null])
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 max-h-[calc(100vh-160px)] overflow-y-auto">
+        <div class="max-h-[calc(100vh-160px)] overflow-y-auto">
+            @livewire('documentacion.ver', ['id' => $documentacion->id])
+        </div>
+        <div class="max-h-[calc(100vh-160px)] overflow-y-auto">
+            @livewire('documentacion.pdf-viewer', ['id' => $documentacion->id ?? null])
+        </div>
+
+    </div>
 @endsection
 <div wire:loading>
     <div

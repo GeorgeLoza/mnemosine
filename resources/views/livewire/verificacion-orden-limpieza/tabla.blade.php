@@ -1,5 +1,57 @@
 <div>
 
+    <div class="mb-4 space-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+            <!-- Fecha Inicio -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Fecha Inicio</label>
+                <input type="date" wire:model.live="fechaInicio" 
+                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+            </div>
+    
+            <!-- Fecha Fin -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Fecha Fin</label>
+                <input type="date" wire:model.live="fechaFin" 
+                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+            </div>
+    
+            <!-- Área -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Área</label>
+                <select wire:model.live="area" 
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                    <option value="">Todas las áreas</option>
+                    @foreach($areas as $area)
+                        <option value="{{ $area }}">{{ $area }}</option>
+                    @endforeach
+                </select>
+            </div>
+    
+    
+            <!-- Supervisor -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Supervisor</label>
+                <select wire:model.live="supervisor" 
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                    <option value="">Todos los supervisores</option>
+                    @foreach($supervisores as $supervisor)
+                        <option value="{{ $supervisor->id }}">
+                            {{ $supervisor->name }} {{ $supervisor->lastname }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+    
+        <!-- Botón de reset -->
+        <div class="flex justify-end">
+            <button wire:click="resetFilters" 
+                    class="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-md text-sm font-medium text-gray-700 dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
+                Resetear Filtros
+            </button>
+        </div>
+    </div>
 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg max-h-[calc(100vh-220px)]">
         <table class="w-full text-xs text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -48,7 +100,7 @@
                         <td class="px-2 py-1.5">
                             {{ $verificacion->ordenLimpieza->detalle }}
                         </td>
-                        <td class="px-2 py-1.5 text-center text-white {{$verificacion->estado == "Bien" ? 'bg-green-500' : 'bg-red-500'}}">
+                        <td class="px-2 py-1.5 text-center text-white {{$verificacion->estado == "Inicio" ? 'bg-blue-500' : ($verificacion->estado == "Fin" || $verificacion->estado == "Bien" ? 'bg-green-500' : 'bg-red-500')}}">
                             {{$verificacion->estado}}
                         </td>
                         <td class="px-2 py-1.5">
@@ -65,7 +117,10 @@
             </tbody>
         </table>
         <!-- Paginación -->
+    </div>
+    <div>
         {{ $verificaciones->links() }}
+        
     </div>
 
     <div wire:loading>

@@ -6,6 +6,7 @@ use App\Models\LavadoMano;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Masmerise\Toaster\Toaster;
 
 class Tabla extends Component
 {
@@ -15,13 +16,14 @@ class Tabla extends Component
     public $codigo;
     public $nombre;
     public $apellido;
+    public $sector;
 
 
     #[On('tablalavado')]
     public function render()
     {
         $query = LavadoMano::with(['user'])
-            ->orderBy('id', 'desc');
+            ->orderBy('tiempo', 'desc');
 
         // Filtros
         if ($this->fecha) {
@@ -44,6 +46,16 @@ class Tabla extends Component
             $query->whereHas('user', function($q) {
                 $q->where('lastname', 'like', '%'.$this->apellido.'%');
             });
+        }if ($this->sector && $this->sector != 'Almacenes') {
+            $query->whereHas('user', function ($q) {
+                $q->whereNot('turno', 'Almacenes');
+            });
+        }
+
+        if ($this->sector && $this->sector == 'Almacenes') {
+            $query->whereHas('user', function ($q) {
+                $q->where('turno', 'Almacenes');
+            });
         }
 
         $lavados = $query->paginate(50);
@@ -54,8 +66,18 @@ class Tabla extends Component
     }
 
 
+    public function resetFilters()
+    {
+        $this->reset(['fecha', 'codigo', 'nombre', 'apellido','sector']);
+        $this->resetPage();
+    }
 
-
+    public function delete($id)
+    {
+        LavadoMano::findOrFail($id)->delete();
+        Toaster::success('Registro Eliminado exitosamente!');
+        $this->dispatch('tablalavado');
+    }
 
 
 }

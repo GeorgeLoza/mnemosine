@@ -71,5 +71,8 @@ class Editar extends ModalComponent
             Toaster::error('Error al actualizar: ' . $th->getMessage());
         }
     }
-    
+    public function cerrar()
+    {
+        $this->closeModal();
+    }    
 }

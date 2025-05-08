@@ -6,6 +6,7 @@ use App\Models\HigienePersonal;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Masmerise\Toaster\Toaster;
 
 class Tabla extends Component
 {
@@ -15,12 +16,13 @@ class Tabla extends Component
     public $codigo;
     public $nombre;
     public $apellido;
+    public $sector;
 
     #[On('tablaHigiene')]
     public function render()
     {
         $query = HigienePersonal::with(['trabajador', 'supervisor'])
-            ->orderBy('id', 'desc');
+            ->orderBy('tiempo', 'desc');
 
         // Filtros
         if ($this->fecha) {
@@ -44,6 +46,18 @@ class Tabla extends Component
                 $q->where('lastname', 'like', '%' . $this->apellido . '%');
             });
         }
+        
+        if ($this->sector && $this->sector != 'Almacenes') {
+            $query->whereHas('trabajador', function ($q) {
+                $q->whereNot('turno', 'Almacenes');
+            });
+        }
+
+        if ($this->sector && $this->sector == 'Almacenes') {
+            $query->whereHas('trabajador', function ($q) {
+                $q->where('turno', 'Almacenes');
+            });
+        }
 
         $higienes = $query->paginate(50);
 
@@ -51,10 +65,16 @@ class Tabla extends Component
             'higienes' => $higienes
         ]);
     }
+        public function delete($id)
+        {
+            HigienePersonal::findOrFail($id)->delete();
+            Toaster::success('Registro Eliminado exitosamente!');
+            $this->dispatch('tablaHigiene');
+        }
 
     public function resetFilters()
     {
-        $this->reset(['fecha', 'codigo', 'nombre', 'apellido']);
+        $this->reset(['fecha', 'codigo', 'nombre', 'apellido','sector']);
         $this->resetPage();
     }
 }

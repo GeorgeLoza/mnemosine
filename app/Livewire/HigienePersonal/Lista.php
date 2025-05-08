@@ -33,6 +33,9 @@ class Lista extends Component
 
         $this->usuariosC = User::where('turno', 'Administración')
             ->whereNot('rol', 'Inhabilitado')
+            ->whereNot('rol', 'Admi')
+            ->whereNot('rol', 'Visor')
+            ->whereNot('rol', 'Administracion')
             ->whereDoesntHave('trabajos', function ($query) use ($fechaHoy) {
                 $query->whereDate('created_at', $fechaHoy); // Comparar solo la fecha
             })
@@ -42,6 +45,9 @@ class Lista extends Component
         // Repetir la misma lógica para los demás turnos
         $this->usuariosT1 = User::where('turno', 'Embolsado')
             ->whereNot('rol', 'Inhabilitado')
+            ->whereNot('rol', 'Admi')
+            ->whereNot('rol', 'Visor')
+            ->whereNot('rol', 'Administracion')
             ->whereDoesntHave('trabajos', function ($query) use ($fechaHoy) {
                 $query->whereDate('created_at', $fechaHoy);
             })
@@ -50,6 +56,9 @@ class Lista extends Component
 
         $this->usuariosT2 = User::where('turno', 'Hornos')
             ->whereNot('rol', 'Inhabilitado')
+            ->whereNot('rol', 'Admi')
+            ->whereNot('rol', 'Visor')
+            ->whereNot('rol', 'Administracion')
             ->whereDoesntHave('trabajos', function ($query) use ($fechaHoy) {
                 $query->whereDate('created_at', $fechaHoy);
             })
@@ -58,6 +67,9 @@ class Lista extends Component
 
         $this->usuariosT3 = User::where('turno', 'Producción')
             ->whereNot('rol', 'Inhabilitado')
+            ->whereNot('rol', 'Admi')
+            ->whereNot('rol', 'Visor')
+            ->whereNot('rol', 'Administracion')
             ->whereDoesntHave('trabajos', function ($query) use ($fechaHoy) {
                 $query->whereDate('created_at', $fechaHoy);
             })
@@ -65,6 +77,9 @@ class Lista extends Component
             ->get();
         $this->usuariosT4 = User::where('turno', 'Burguer King')
             ->whereNot('rol', 'Inhabilitado')
+            ->whereNot('rol', 'Admi')
+            ->whereNot('rol', 'Visor')
+            ->whereNot('rol', 'Administracion')
             ->whereDoesntHave('trabajos', function ($query) use ($fechaHoy) {
                 $query->whereDate('created_at', $fechaHoy);
             })
@@ -72,6 +87,9 @@ class Lista extends Component
             ->get();
         $this->usuariosT5 = User::where('turno', 'Repostería Fina')
             ->whereNot('rol', 'Inhabilitado')
+            ->whereNot('rol', 'Admi')
+            ->whereNot('rol', 'Visor')
+            ->whereNot('rol', 'Administracion')
             ->whereDoesntHave('trabajos', function ($query) use ($fechaHoy) {
                 $query->whereDate('created_at', $fechaHoy);
             })
@@ -79,6 +97,9 @@ class Lista extends Component
             ->get();
         $this->usuariosT6 = User::where('turno', 'Almacenes')
             ->whereNot('rol', 'Inhabilitado')
+            ->whereNot('rol', 'Admi')
+            ->whereNot('rol', 'Visor')
+            ->whereNot('rol', 'Administracion')
             ->whereDoesntHave('trabajos', function ($query) use ($fechaHoy) {
                 $query->whereDate('created_at', $fechaHoy);
             })

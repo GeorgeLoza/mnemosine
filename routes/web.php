@@ -55,8 +55,12 @@ Route::get('/documentacion/{documento}/ver-pdf', [PdfViewer::class, 'verPDF'])
     Route::get('/mantenimiento/maquina', [PantallaController::class, 'maquina'])->name('maquinas.index');
     Route::get('/mantenimiento/maquina/{id}', [PantallaController::class, 'maquinaDetalle'])->name('maquina.detalle');
     Route::get('/mantenimiento/revisionDiaria', [PantallaController::class, 'revisionDiaria'])->name('revisionDiaria.index');
-    Route::get('/mantenimiento/OrdenTrabajo', [PantallaController::class, 'OrdenTrabajo'])->name('OrdenTrabajo.index');
+    Route::get('/mantenimiento/OrdenTrabajo/{tipo}', [PantallaController::class, 'OrdenTrabajo'])->name('OrdenTrabajo.index');
     Route::get('/mantenimiento/herramienta', [PantallaController::class, 'herramienta'])->name('herramienta.index');
+    Route::get('/mantenimiento/inspeccionHerramienta', [PantallaController::class, 'inspeccionHerramienta'])->name('inspeccionHerramienta.index');
+
+    Route::get('/mantenimiento/infrestructura', [PantallaController::class, 'infrestructura'])->name('infrestructura.index');
+    Route::get('/mantenimiento/revisionMensualInfres', [PantallaController::class, 'revisionMensualInfres'])->name('revisionMensualInfres.index');
 
     Route::get('/higiene', [MobileController::class, 'higienePersonal'])->name('mobile.higienePersonal');
     Route::get('/externo', [MobileController::class, 'higieneExterno'])->name('mobile.higieneExterno');

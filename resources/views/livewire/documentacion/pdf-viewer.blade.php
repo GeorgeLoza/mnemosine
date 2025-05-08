@@ -1,8 +1,7 @@
 <div class="mt-2">
-    <h1 class="text-center text-2xl font-bold mb-2">Documento Digital</h1>
     <div class="flex justify-center ">
         @if ($pdfUrl)
-            <div class="relative rounded-lg p-5 bg-gray-300 h-screen w-10/12">
+            <div class="relative rounded-lg p-5 bg-gray-300 h-screen w-full ">
                 <iframe id="miIframe" src="{{ $pdfUrl }}#toolbar=0" class="w-full h-full"
                     frameborder="0"></iframe>
                 <div class="absolute top-0 right-0 mr-8 w-full h-full bg-transparent" oncontextmenu="return false">

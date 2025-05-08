@@ -64,4 +64,8 @@ class Crear extends ModalComponent
             Toaster::error('Fallo al momento de registrar: ' . $th->getMessage());
         }
     }
+    public function cerrar()
+    {
+        $this->closeModal();
+    }
 }

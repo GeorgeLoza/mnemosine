@@ -123,7 +123,7 @@
         class="absolute z-30 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-72 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400">
         <div class="p-3 space-y-2">
             <h3 class="font-semibold text-gray-900 dark:text-white">Ropa de trabajo</h3>
-            <p>La visita de tener su uniforme de trabajo (en caso de ser trabajador), o en caso contrario vestir con
+            <p>La visita deb tener su uniforme de trabajo (en caso de ser trabajador), o en caso contrario vestir con
                 guardapolvo, gabacha, barbijo,
                 zapatos limpios y cerrados.</p>
         </div>
@@ -135,7 +135,7 @@
         class="absolute z-30 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-72 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400">
         <div class="p-3 space-y-2">
             <h3 class="font-semibold text-gray-900 dark:text-white">Higiene del Personal</h3>
-            <p>El trabajador debe tener las uñas cortas y limpias, y no debe presentar heridas en las manos.</p>
+            <p>Se debe tener las uñas cortas y limpias, y no debe presentar heridas en las manos.</p>
             <h3 class="font-semibold text-gray-900 dark:text-white">Hombre:</h3>
             <p>Cabello corto, sin baraba.</p>
             <h3 class="font-semibold text-gray-900 dark:text-white">Mujeres:</h3>

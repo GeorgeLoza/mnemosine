@@ -2,7 +2,7 @@
 
 @section('titulo')
     <div class="hidden md:block text-blue-500 font-light text-sm">PLP-PRO-602-REG-02</div>
-    <h1>Control de Sustancias Peligrosas</h1>
+    <h1>Entrega de insumos</h1>
     <div class="flex gap-1">
 
         <div class="hidden md:flex gap-1">

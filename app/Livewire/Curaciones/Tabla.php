@@ -67,13 +67,14 @@ class Tabla extends Component
     public function delete($id)
     {
         Curacion::findOrFail($id)->delete();
-        session()->flash('message', 'Trabajo eliminado correctamente.');
+        Toaster::success('Registro Elimanado exitosamente!');
+        $this->dispatch('curacion');
     }
     #[On('curacion')]
     public function render()
     {
         return view('livewire.curaciones.tabla', [
-            'curaciones' => Curacion::paginate(10),
+            'curaciones' => Curacion::orderBy('tiempo', 'desc')->paginate(10),
             'usuarios' => User::all()
         ]);
     }

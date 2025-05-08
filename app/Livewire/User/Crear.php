@@ -17,6 +17,7 @@ class Crear extends ModalComponent
     public $turno;
     public $codigo;
     public $password;
+
     public $showPassword = false; // Nueva propiedad
 
     protected $rules = [
@@ -37,6 +38,7 @@ class Crear extends ModalComponent
     {
 
         $this->validate();
+        
         try {
              User::create([
                 'name' => $this->name,

@@ -43,4 +43,8 @@ class Editar extends ModalComponent
     {
         return view('livewire.mantenimiento.orden-trabajo.editar');
     }
+    public function cerrar()
+    {
+        $this->closeModal();
+    }
 }

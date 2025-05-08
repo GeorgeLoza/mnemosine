@@ -29,7 +29,8 @@ class Reporte extends Component
         $this->dates = collect(range(0, 6))->map(fn($i) => Carbon::today()->subDays($i)->toDateString());
 
         // Consultar usuarios con conteo de registros por fecha
-        $users = User::with('trabajos')->whereNot('rol', 'Inhabilitado')->orderBy('lastname', 'asc')->get();
+        $users = User::with('trabajos')->whereNot('rol', 'Inhabilitado')->whereNot('rol', 'Admi')
+        ->whereNot('rol', 'Visor')->whereNot('rol', 'Administracion')->orderBy('lastname', 'asc')->get();
 
         $userData = $users->map(function ($user) {
             $counts = [];

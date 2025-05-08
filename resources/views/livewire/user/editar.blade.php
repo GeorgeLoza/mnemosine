@@ -50,11 +50,13 @@
                             class="block mb-1 text-sm font-medium text-gray-900 dark:text-white capitalize">Rol</label>
                         <select id="rol" wire:model="rol" value="{{ old('rol') }}"
                             class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            <option selected>Escoge un rol</option>
-                            <option value="admi">Admi</option>
-                            <option value="jef">Jefatura</option>
-                            <option value="supervisor">Supervisor</option>
-                            <option value="personal">Personal</option>
+                            <option value="Admi">Admi</option>
+                            <option value="Visor">Visor</option>
+                            <option value="Jefatura">Jefatura</option>
+                            <option value="Supervisor">Supervisor</option>
+                            <option value="Personal">Personal</option>
+                            <option value="Mantenimiento">Mantenimiento</option>
+                            <option value="Administracion">Administracion</option>
                             <option value="Inhabilitado">Inhabilitado</option>
                         </select>
                         @error('rol')
@@ -71,7 +73,6 @@
                             <option value="Administración">Administración</option>
                             <option value="Embolsado">Embolsado</option>
                             <option value="Hornos">Hornos</option>
-                            <option value="Producción">Producción</option>
                             <option value="Producción">Producción</option>
                             <option value="Burguer King">Burguer King</option>
                             <option value="Repostería Fina">Repostería Fina</option>

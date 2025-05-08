@@ -72,17 +72,27 @@
                             <td class="px-4 py-1">{{ $orden->area ?? '-' }}</td>
                             <td class="px-4 py-1">{{ $orden->periodo ?? '-' }}</td>
                             <td class="px-4 py-1 flex space-x-2">
-                                <button wire:click="registrarBien({{ $orden->id }})"
-                                    class="px-2 py-1 cursor-pointer">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-                                        class="w-5 h-5 fill-green-500">
+                                <button wire:click="registrarInicio({{ $orden->id }})"
+                                    class="px-2 py-1 cursor-pointer bg-blue-500 text-white rounded-md flex gap-1 items-center">
+                                    Inicio
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"
+                                        class="w-5 h-5 fill-white">
                                         <path
-                                            d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
+                                            d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80L0 432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />
+                                    </svg>
+                                </button>
+                                <button wire:click="registrarFin({{ $orden->id }})"
+                                    class="px-2 py-1 cursor-pointer bg-green-500 text-white rounded-md flex gap-1 items-center">
+                                    Fin
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 320 512" class="w-5 h-5 fill-white">
+                                        <path
+                                            d="M52.5 440.6c-9.5 7.9-22.8 9.7-34.1 4.4S0 428.4 0 416L0 96C0 83.6 7.2 72.3 18.4 67s24.5-3.6 34.1 4.4l192 160L256 241l0-145c0-17.7 14.3-32 32-32s32 14.3 32 32l0 320c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-145-11.5 9.6-192 160z" />
                                     </svg>
                                 </button>
                                 <button wire:click="abrirModal({{ $orden->id }})" class="px-2 py-1 cursor-pointer">
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 512 512" class="w-5 h-5 fill-red-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                                        class="w-5 h-5 fill-red-500">
                                         <path
                                             d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z" />
                                     </svg>

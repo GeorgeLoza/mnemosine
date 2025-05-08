@@ -16,6 +16,7 @@ class OrdenTrabajo extends Model
         'tipo_ot',
         'desperfecto',
         'maquina_equipo_id',
+        'mantenimiento_infrestructura_id',
         'estado',
         'tiempo_respuesta',
         'user_tecnico',
@@ -40,5 +41,9 @@ class OrdenTrabajo extends Model
     public function maquinaEquipo()
     {
         return $this->belongsTo(MaquinaEquipo::class, 'maquina_equipo_id');
+    }
+    public function mantenimientoInfrestructura()
+    {
+        return $this->belongsTo(MantenimientoInfrestructuras::class, 'mantenimiento_infrestructura_id');
     }
 }

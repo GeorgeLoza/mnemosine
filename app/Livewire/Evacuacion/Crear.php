@@ -64,4 +64,8 @@ class Crear extends ModalComponent
     {
         return view('livewire.evacuacion.crear');
     }
+    public function cerrar()
+    {
+        $this->closeModal();
+    }
 }

@@ -15,39 +15,56 @@ class Reporte extends Component
 {
 
     public $dates;
+    public $selectedDate;
+    
+    public $sector;
 
     public function mount()
     {
         // Generar los últimos 5 días incluyendo hoy
-        $this->dates = collect(range(0, 6))->map(fn($i) => Carbon::today()->subDays($i)->toDateString());
+        $this->selectedDate = Carbon::today()->toDateString(); // Fecha inicial hoy
     }
 
     public function render()
-    {
-        // Obtener las fechas de los últimos 5 días
-        $this->dates = collect(range(0, 6))->map(fn($i) => Carbon::today()->subDays($i)->toDateString());
+{
+    // Si hay fecha seleccionada, solo esa fecha, si no, los últimos 7 días
+    $this->dates = $this->selectedDate
+        ? [Carbon::parse($this->selectedDate)->toDateString()]
+        : collect(range(0, 6))->map(fn($i) => Carbon::today()->subDays($i)->toDateString());
 
-        // Consultar usuarios con conteo de registros por fecha
-        $users = User::with('lavadoManos')->whereNot('rol', 'Inhabilitado')->orderBy('lastname', 'asc')->get();
+    $query = User::query()->orderBy('lastname', 'asc')->whereNot('rol', 'Inhabilitado')->whereNot('rol', 'Admi')
+    ->whereNot('rol', 'Visor')
+    ->whereNot('rol', 'Administracion');
 
-        $userData = $users->map(function ($user) {
-            $counts = [];
-            foreach ($this->dates as $date) {
-                $counts[$date] = $user->lavadoManos()
-                    ->whereDate('created_at', $date)
-                    ->count();
-            }
-            return [
-                'user' => $user,
-                'data' => $counts,
-            ];
-        });
-
-        return view('livewire.lavado-mano.reporte', [
-            'users' => $userData,
-            'dates' => $this->dates,
-        ]);
+    if ($this->sector && $this->sector != 'Almacenes') {
+        $query->whereNot('turno', 'Almacenes');
     }
+
+    if ($this->sector && $this->sector == 'Almacenes') {
+        $query->where('turno', 'Almacenes');
+    }
+
+    $users = $query->get();
+
+    $userData = $users->map(function ($user) {
+        $counts = [];
+        foreach ($this->dates as $date) {
+            $counts[$date] = $user->lavadoManos()
+                ->whereDate('created_at', $date)
+                ->count();
+        }
+        return [
+            'user' => $user,
+            'data' => $counts,
+        ];
+    });
+
+    return view('livewire.lavado-mano.reporte', [
+        'users' => $userData,
+        'dates' => $this->dates,
+    ]);
+}
+
 
 
     public function pdf()
@@ -55,9 +72,11 @@ class Reporte extends Component
 
         return response()->streamDownload(
             function () {
-                // Obtener las fechas de los últimos 5 días
-                $this->dates = collect(range(0, 6))->map(fn($i) => Carbon::today()->subDays($i)->toDateString());
-
+                    
+                $this->dates = $this->selectedDate
+                ? [Carbon::parse($this->selectedDate)->toDateString()]
+                : collect(range(0, 6))->map(fn($i) => Carbon::today()->subDays($i)->toDateString());
+            
                 // Consultar usuarios con conteo de registros por fecha
                 $users = User::with('lavadoManos')->whereNot('rol', 'Inhabilitado')->orderBy('lastname', 'asc')->get();
 

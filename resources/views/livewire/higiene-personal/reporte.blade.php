@@ -8,6 +8,7 @@
                     <th class="px-4 py-1 text-center border-b border-gray-300">{{ \Carbon\Carbon::parse($date)->format('d/m') }}</th>
                 @endforeach
             </tr>
+            
         </thead>
         <tbody>
             @foreach ($users as $userData)

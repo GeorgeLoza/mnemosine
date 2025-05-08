@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 class Documentacion extends Model
 {
     use HasFactory;
@@ -16,18 +17,32 @@ class Documentacion extends Model
     protected $table = 'documentacions';
     protected $appends = ['pdf_url'];
 
-    
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-     protected $fillable = [
-        'codigo', 'titulo', 'descripcion', 'tipo', 'area', 'version', 'estado',
-        'fecha_creacion', 'creador_id', 'fecha_revision', 'revisor_id',
-        'fecha_aprobacion', 'aprovador_id', 'documento_referenciado_id',
-        'pdf_path', 'word_path'
+    protected $fillable = [
+        'codigo',
+        'titulo',
+        'descripcion',
+        'tipo',
+        'area',
+        'version',
+        'estado',
+        'fecha_creacion',
+        'creador_id',
+        'fecha_revision',
+        'revisor_id',
+        'fecha_aprobacion',
+        'aprovador_id',
+        'documento_referenciado_id',
+        'pdf_path',
+        'word_path',
+        'presentacion'
     ];
+
 
     // Relación con la misma tabla
     public function documentoReferenciado()

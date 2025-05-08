@@ -1,7 +1,18 @@
 <div>
     <div class="flex gap-2">
         <div class="mb-4">
-            <input type="date" wire:model.live="selectedDate" class="border rounded px-2 py-1">
+            <label class="block text-sm font-medium text-gray-700">Fecha</label>
+            <input type="date" wire:model.live="selectedDate" class="mt-1 block  rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+        </div>
+
+        <div class="flex-1">
+            <label class="block text-sm font-medium text-gray-700">Sector</label>
+            <select  wire:model.live.debounce.300ms="sector" class="mt-1 block  rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                <option selected>Todos</option>
+                <option value="Panaderia">Panaderia</option>
+                <option value="Almacenes">Almacenes</option>
+              </select>
+            
         </div>
 
         <button class=" cursor-pointer " wire:click="pdf" wire:loading.attr="disabled">

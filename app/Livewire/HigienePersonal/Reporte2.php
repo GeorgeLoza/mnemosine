@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\App;
 class Reporte2 extends Component
 {
     public $selectedDate; // Nueva propiedad para el input de fecha
+    public $sector;
 
     public function mount()
     {
@@ -28,7 +29,23 @@ class Reporte2 extends Component
             ? [Carbon::parse($this->selectedDate)->toDateString()]
             : collect(range(0, 6))->map(fn($i) => Carbon::today()->subDays($i)->toDateString());
 
-        $users = User::whereNot('rol', 'Inhabilitado')->orderBy('lastname', 'asc')->get();
+        $query = User::query()->orderBy('lastname', 'asc');
+
+        $query->whereNot('rol', 'Inhabilitado')->whereNot('rol', 'Admi')
+        ->whereNot('rol', 'Visor')
+        ->whereNot('rol', 'Administracion');
+
+        if ($this->sector && $this->sector != 'Almacenes') {
+
+            $query->whereNot('turno', 'Almacenes');
+        }
+
+        if ($this->sector && $this->sector == 'Almacenes') {
+            $query->where('turno', 'Almacenes');
+        };
+
+
+        $users = $query->get();
 
         $userData = $users->map(function ($user) use ($dates) {
             $counts = [];

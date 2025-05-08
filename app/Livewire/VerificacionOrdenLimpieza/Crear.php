@@ -7,6 +7,9 @@ use App\Models\VerificacionOrdenLimpieza;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Masmerise\Toaster\Toaster;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+
 
 class Crear extends Component
 {
@@ -51,26 +54,48 @@ class Crear extends Component
     }
 
 
+
     public function getFilteredResultsProperty()
     {
+        $sixHoursAgo = Carbon::now()->subHours(1);
+
         return OrdenLimpieza::when($this->responsable, fn($query) => $query->where('responsable', $this->responsable))
             ->when($this->area, fn($query) => $query->where('area', $this->area))
             ->when($this->grupo, fn($query) => $query->where('grupo', $this->grupo))
             ->when($this->periodo, fn($query) => $query->where('periodo', $this->periodo))
-            ->whereDoesntHave('verificaciones', function ($query) {
-                $query->whereDate('tiempo', now()->toDateString());
+            ->where(function ($query) use ($sixHoursAgo) {
+                $query->whereDoesntHave('verificaciones')
+                    ->orWhereHas('verificaciones', function ($q) use ($sixHoursAgo) {
+                        $q->select('orden_limpieza_id', DB::raw('MAX(created_at) as last_verification'))
+                            ->groupBy('orden_limpieza_id')
+                            ->having('last_verification', '<', $sixHoursAgo);
+                    });
             })
             ->get();
     }
 
-    // Registrar con estado "Bien"
-    public function registrarBien($ordenId)
+    // Registrar con estado ""
+    public function registrarInicio($ordenId)
     {
         VerificacionOrdenLimpieza::create([
             'tiempo' => now(),
             'user_id' => Auth::id(),
             'orden_limpieza_id' => $ordenId,
-            'estado' => "Bien",
+            'estado' => "Inicio",
+            'observaciones' => null,
+            'correccion' => null,
+        ]);
+
+        Toaster::success('Usuario creado exitosamente!');
+    }
+    // Registrar con estado "
+    public function registrarFin($ordenId)
+    {
+        VerificacionOrdenLimpieza::create([
+            'tiempo' => now(),
+            'user_id' => Auth::id(),
+            'orden_limpieza_id' => $ordenId,
+            'estado' => "Fin",
             'observaciones' => null,
             'correccion' => null,
         ]);
@@ -108,5 +133,9 @@ class Crear extends Component
         return view('livewire.verificacion-orden-limpieza.crear', [
             'ordenes' => $this->filteredResults
         ]);
+    }
+    public function cerrar()
+    {
+        $this->closeModal();
     }
 }

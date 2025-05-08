@@ -95,4 +95,8 @@ class Crear extends ModalComponent
     {
         return view('livewire.sustancias.crear');
     }
+    public function cerrar()
+    {
+        $this->closeModal();
+    }
 }

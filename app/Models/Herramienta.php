@@ -17,4 +17,9 @@ class Herramienta extends Model
         'observaciones',
 
     ];
+
+    public function inspecciones()
+    {
+        return $this->hasMany(InspeccionHerramientas::class);
+    }
 }

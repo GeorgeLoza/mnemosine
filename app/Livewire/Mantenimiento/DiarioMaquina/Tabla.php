@@ -14,28 +14,33 @@ class Tabla extends Component
 
     public function mount()
     {
-        // Generar las fechas de los últimos 7 días
-        $this->dates = collect(range(0, 6))->map(fn($i) => Carbon::today()->subDays($i)->toDateString());
+        $this->dates = collect(range(0, 6))
+            ->map(fn($i) => Carbon::today()->subDays($i)->toDateString())
+            ->reverse();  // Ordenar de más reciente a más antiguo
     }
+
     #[On('revision_diaria')]
     public function render()
     {
-        // Obtener todas las máquinas únicas
         $maquinas = MaquinaEquipo::all();
 
-        // Construir el reporte
         $maquinaData = $maquinas->map(function ($maquina) {
-            $counts = [];
+            $dataPorFecha = [];
+            
             foreach ($this->dates as $date) {
-                $revision = RevisionDiariaMaquina::where('maquina_equipo_id', $maquina->id)
-                    ->whereDate('tiempo', $date)
-                    ->first();
+                // Obtener TODAS las revisiones de la fecha
+                $revisiones = RevisionDiariaMaquina::where([
+                    ['maquina_equipo_id', $maquina->id],
+                    ['tiempo', '>=', Carbon::parse($date)->startOfDay()],
+                    ['tiempo', '<=', Carbon::parse($date)->endOfDay()]
+                ])->get();
 
-                $counts[$date] = $revision ? $revision->estado : null; // 'bien', 'mal' o null
+                $dataPorFecha[$date] = $revisiones->isEmpty() ? null : $revisiones;
             }
+
             return [
                 'maquina' => $maquina,
-                'data' => $counts,
+                'data' => $dataPorFecha,
             ];
         });
 
@@ -43,6 +48,5 @@ class Tabla extends Component
             'maquinas' => $maquinaData,
             'dates' => $this->dates,
         ]);
-    }    
-    
+    }
 }

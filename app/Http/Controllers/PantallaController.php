@@ -54,8 +54,9 @@ class PantallaController extends Controller
         return view('pantallas.revisionDiaria');
     }
     
-    public function OrdenTrabajo(){
-        return view('pantallas.OrdenTrabajo');
+    public function OrdenTrabajo($tipo){
+        
+        return view('pantallas.OrdenTrabajo', compact('tipo'));
     }
     public function ReporteHigienePersonal(){
         return view('pantallas.reporteHigienePersonal');
@@ -69,6 +70,9 @@ class PantallaController extends Controller
     public function herramienta(){
         return view('pantallas.herramienta');
     }
+    public function inspeccionHerramienta(){
+        return view('pantallas.inspeccionHerramienta');
+    }
     public function curacion(){
         return view('pantallas.curacion');
     }
@@ -80,5 +84,12 @@ class PantallaController extends Controller
     }
     public function reporteEvacuacion(){
         return view('pantallas.reporteEvacuacion');
+    }
+
+    public function infrestructura(){
+        return view('pantallas.infrestructura');
+    }
+    public function revisionMensualInfres(){
+        return view('pantallas.revisionMensualInfres');
     }
 }
