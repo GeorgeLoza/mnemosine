@@ -7,6 +7,7 @@ use App\Models\VerificacionOrdenLimpieza;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Masmerise\Toaster\Toaster;
 
 class Tabla extends Component
 {
@@ -65,4 +66,11 @@ class Tabla extends Component
     {
         $this->reset(['fechaInicio', 'fechaFin', 'area', 'supervisor']);
     }
+
+    public function delete($id)
+        {
+            VerificacionOrdenLimpieza::findOrFail($id)->delete();
+            Toaster::success('Registro Eliminado exitosamente!');
+            $this->dispatch('tablaHigiene');
+        }
 }

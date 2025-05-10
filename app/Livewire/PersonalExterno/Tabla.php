@@ -6,16 +6,31 @@ use App\Models\PersonalExterno;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Masmerise\Toaster\Toaster;
+use Livewire\WithPagination;
 
 class Tabla extends Component
 {
+    use WithPagination;
 
+    public $fecha;
     #[On('tablaExternoPersonal')]
     public function render()
     {
+        $query = PersonalExterno::orderBy('id', 'desc');
+
+        // Aplicar filtro por fecha si existe
+        if ($this->fecha) {
+            $query->whereDate('tiempo', $this->fecha);
+        }
+
         return view('livewire.personal-externo.tabla', [
-            'externos' => PersonalExterno::orderBy('id', 'desc')->paginate(10)
+            'externos' => $query->paginate(10),
         ]);
+    }
+    public function resetFilters()
+    {
+        $this->reset(['fecha']);
+        $this->resetPage();
     }
 
     public function delete($id)

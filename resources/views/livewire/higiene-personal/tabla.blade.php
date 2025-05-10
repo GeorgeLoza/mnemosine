@@ -80,7 +80,7 @@
                         Supervisor
                     </th>
                     <th scope="col" class="px-2 py-1">
-                        Opcion
+                        Acciones
                     </th>
                 </tr>
             </thead>

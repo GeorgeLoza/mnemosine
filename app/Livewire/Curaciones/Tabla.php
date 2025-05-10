@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\App;
 class Tabla extends Component
 {
     use WithPagination;
+    public $fecha;
 
     public $tiempo, $trabajador, $detalle, $esparatrapo, $guante, $responsable_inicio, $responsable_fin, $observaciones;
     public $trabajoId;
@@ -73,12 +74,24 @@ class Tabla extends Component
     #[On('curacion')]
     public function render()
     {
-        return view('livewire.curaciones.tabla', [
-            'curaciones' => Curacion::orderBy('tiempo', 'desc')->paginate(10),
-            'usuarios' => User::all()
-        ]);
-    }
+        $query = Curacion::orderBy('tiempo', 'desc');
 
+        // Aplicar filtro por fecha si existe
+        if ($this->fecha) {
+            $query->whereDate('tiempo', $this->fecha);
+        }
+        
+        return view('livewire.curaciones.tabla', [
+            'curaciones' => $query->paginate(10),
+            'usuarios' => User::all(),
+        ]);
+        
+    }
+    public function resetFilters()
+    {
+        $this->reset(['fecha']);
+        $this->resetPage();
+    }
     public function pdf()
     {
 

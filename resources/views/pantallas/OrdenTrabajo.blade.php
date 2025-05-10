@@ -11,7 +11,7 @@
     <h1>Orden de trabajo - 
 
         @if ($tipo=="infrestructura")
-            Infrestructura
+            Infraestructura
         @else
         Maquinaria  
         @endif

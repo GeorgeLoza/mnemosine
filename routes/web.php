@@ -36,15 +36,15 @@ Route::middleware(['auth'])->group(function () {
         ->name('documentacion.ver');
 
 
-Route::get('/ver-pdf/{documento}', [PdfViewer::class, 'verPDF'])->name('ver.pdf');
+    Route::get('/ver-pdf/{documento}', [PdfViewer::class, 'verPDF'])->name('ver.pdf');
 
-Route::get('/ver-pdf/{id}', [PdfController::class, 'verPDF'])->name('ver.pdf');
-
-
+    Route::get('/ver-pdf/{id}', [PdfController::class, 'verPDF'])->name('ver.pdf');
 
 
-Route::get('/documentacion/{documento}/ver-pdf', [PdfViewer::class, 'verPDF'])
-    ->name('documentacion.verPDF');
+
+
+    Route::get('/documentacion/{documento}/ver-pdf', [PdfViewer::class, 'verPDF'])
+        ->name('documentacion.verPDF');
 
     Route::get('/externoPersonal', [PantallaController::class, 'externoPersonal'])->name('externoPersonal.index');
     Route::get('/ordLimDes', [PantallaController::class, 'ordLimDes'])->name('ordLimDes.index');

@@ -85,4 +85,6 @@ class Tabla extends Component
 
         Toaster::success('Registro Borrado exitosamente!');
     }
+
+    
 }

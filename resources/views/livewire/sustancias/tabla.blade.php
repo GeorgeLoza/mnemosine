@@ -67,6 +67,9 @@
                     <th scope="col" class="px-2 py-1">
                         encargado
                     </th>
+                    <th scope="col" class="px-2 py-1">
+                        Acciones
+                    </th>
                 </tr>
             </thead>
             <tbody>

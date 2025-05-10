@@ -13,14 +13,14 @@
                 <option value="Completado">Completado</option>
             </select>
         </div>
-        <div>
+        {{-- <div>
             <label>Tipo</label>
             <select wire:model.live.debounce.300ms="tipo" class="w-full border rounded px-2 py-1">
                 <option value="">Todos</option>
                 <option value="Maquina">Maquina/Equipo</option>
                 <option value="Infraestructura">Infraestructura</option>
             </select>
-        </div>
+        </div> --}}
 
         <div>
             <label>Desde</label>
@@ -41,7 +41,7 @@
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <th class="px-2 py-1 whitespace-nowrap">opciones</th>
+                    <th class="px-2 py-1 whitespace-nowrap">Acciones</th>
                     <th class="px-2 py-1 whitespace-nowrap">Fecha</th>
                     <th class="px-2 py-1 whitespace-nowrap">OT</th>
                     <th class="px-2 py-1 whitespace-nowrap">Solicitante</th>
@@ -63,6 +63,7 @@
                         <td class="px-2 py-1 whitespace-nowrap">
                             <div class="flex gap-4">
 
+                            
                                 <button
                                     onclick="Livewire.dispatch('openModal', { component: 'mantenimiento.ordenTrabajo.reporte', arguments: { id: {{ $orden->id }} } })"
                                     class="btn btn-primary">
@@ -115,6 +116,16 @@
                                     </button>
                                 @endif
 
+
+                                @if (auth()->user()->rol === 'Admi' ||
+                                (auth()->user()->rol === 'Supervisor' && now()->diffInMinutes($orden->created_at) <= 60))
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+                                class="w-4 h-4 fill-red-600" wire:click="delete({{ $orden->id }})"
+                                wire:confirm="Esta seguro que desea borrar al usuario?">
+                                <path
+                                    d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0L284.2 0c12.1 0 23.2 6.8 28.6 17.7L320 32l96 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 96C14.3 96 0 81.7 0 64S14.3 32 32 32l96 0 7.2-14.3zM32 128l384 0 0 320c0 35.3-28.7 64-64 64L96 512c-35.3 0-64-28.7-64-64l0-320zm96 64c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16z" />
+                            </svg>
+@endif
                             </div>
                         </td>
                         <td class="px-2 py-1 whitespace-nowrap">
@@ -145,7 +156,12 @@
                         </td>
                         <td class="px-2 py-1 whitespace-nowrap">{{ $orden->desperfecto }}</td>
                         <td class="px-2 py-1 whitespace-nowrap">
-                            {{ \Carbon\Carbon::parse($orden->tiempo_respuesta)->format('d/M/Y') }}</td>
+                            @if ($orden->tiempo_respuesta)
+                            {{ \Carbon\Carbon::parse($orden->tiempo_respuesta)->format('d/M/Y') }}
+                            @else
+                                -
+                            @endif
+                            </td>
                         <td class="px-2 py-1 whitespace-nowrap">
                             {{ $orden->user_tecnico ? $orden->tecnico->name . ' ' . $orden->tecnico->lastname : 'Sin asignar' }}
                         </td>

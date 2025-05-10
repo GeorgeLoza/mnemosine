@@ -13,6 +13,7 @@
         <table class="w-full text-xs text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
+                    <th class="px-2 py-1">Area</th>
                     <th class="px-2 py-1">Infraestructura</th>
                     @foreach($meses as $mes)
                         <th class="px-2 py-1">{{ $mes }}</th>

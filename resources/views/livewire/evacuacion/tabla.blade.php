@@ -82,7 +82,7 @@
                         correcciones
                     </th>
                     <th scope="col" class="px-2 py-1" nowrap>
-                        opciones
+                        Acciones
                     </th>
 
                 </tr>

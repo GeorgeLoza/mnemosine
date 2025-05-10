@@ -1,5 +1,16 @@
 <div>
-
+    
+    <div class="flex flex-wrap gap-4 mb-4 items-end p-4 bg-gray-50 rounded-lg">
+    <div class="flex-1">
+        <label class="block text-sm font-medium text-gray-700">Fecha</label>
+        <input type="date" wire:model.live.debounce.300ms="fecha" 
+               class="mt-1 block  rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+    </div> 
+    <button wire:click="resetFilters" 
+                class="h-fit px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-md text-sm">
+            Limpiar Filtros
+        </button> 
+    </div>  
 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-xs text-left rtl:text-right text-gray-500 dark:text-gray-400">

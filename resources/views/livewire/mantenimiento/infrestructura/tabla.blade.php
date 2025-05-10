@@ -15,7 +15,7 @@
                     <th class="px-4 py-2">Código</th>
                     <th class="px-4 py-2">Área</th>
                     <th class="px-4 py-2">Subárea</th>
-                    <th class="px-4 py-2">Infrestructura</th>
+                    <th class="px-4 py-2">Infraestructura</th>
                     <th class="px-4 py-2">frecuencia</th>
                     <th class="px-4 py-2">Acciones</th>
                 </tr>

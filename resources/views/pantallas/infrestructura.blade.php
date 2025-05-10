@@ -2,7 +2,7 @@
 
 @section('titulo')
     <div></div>
-    <h1>Infrestructura</h1>
+    <h1>Infraestructura</h1>
     <div></div>
 @endsection
 

@@ -20,7 +20,7 @@
             </div>
 
             <div>
-                <label>Infrestructura:</label>
+                <label>Infraestructura:</label>
                 <input type="text" wire:model="infrestructura" class="input input-bordered w-full" required>
             </div>
         </div>
